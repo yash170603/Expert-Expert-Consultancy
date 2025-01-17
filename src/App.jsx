@@ -3,8 +3,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import NeetPG from './components/NeetPG';
 import NeetUG from './components/NeetUG';
-import SignInPage from './components/signInPage';
+import SignInPage from './components/SignInPage';
 import SignUpPage from './components/SignUpPage';
+
 const App = () => {
   return (
     <div>
