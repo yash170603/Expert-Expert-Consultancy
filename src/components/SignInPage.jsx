@@ -2,9 +2,9 @@ import React from 'react'
 
 const SignInPage = () => {
   return (
-    <div>
-           dil ki ye zameen
-    </div>
+    <div className='bg-black h-screen text-white flex flex-col justify-center items-center'> 
+    This is the signIN page
+</div>
   )
 }
 

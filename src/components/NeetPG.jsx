@@ -3,26 +3,40 @@ import TopComponent from "./TopComponent";
 import AboutUs from "./AboutUs";
 import WhyUs from "./WhyUs";
 import Testimonials from "./Testimonials";
+import Navbar from "./Navbar";
 
 const NeetPG = () => {
   const aboutUsRef = useRef(null);
   const whyUsRef = useRef(null);
   const testimonialsRef = useRef(null);
+  const refs = {
+    aboutUsRef,
+    whyUsRef,
+    testimonialsRef,
+  };
+
+  const scrollToSection = (section) => {
+    if (refs[section]?.current) {
+      refs[section].current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
-    <div className=" min-h-screen">
-      <section>
-        <TopComponent refs={{ aboutUsRef, whyUsRef, testimonialsRef }} />
-      </section>
-      <section ref={aboutUsRef} className="md:py-16 lg:py-24">
-        <AboutUs />
-      </section>
-      <section ref={whyUsRef} className="md:py-16 lg:py-24">
-        <WhyUs />
-      </section>
-      <section ref={testimonialsRef} className="md:py-16 lg:py-24">
-        <Testimonials />
-      </section>
+    <div className="min-h-screen bg-blue-950">
+      <Navbar scrollToSection={scrollToSection} />
+      <TopComponent />
+      <div className=" mx-auto px-4 space-y-24 py-24 ">
+        <section ref={aboutUsRef} id="about-us" className="border-2 rounded-xl border-white  p-4">
+          <AboutUs />
+        </section>
+
+        <section ref={whyUsRef} id="why-us" className="border-2 rounded-xl border-white p-4">
+          <WhyUs />
+        </section>
+        <section ref={testimonialsRef} id="testimonials" className="border-2 rounded-xl border-white p-4">
+          <Testimonials />
+        </section>
+      </div>
     </div>
   );
 };
