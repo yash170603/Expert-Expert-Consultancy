@@ -1,43 +1,40 @@
 import React from "react";
 import { IoMdMenu } from "react-icons/io";
 import { motion } from "framer-motion";
-import SignInButton from "./SignInButton";
 
 const NavbarMenu = [
-  { id: 1, title: "About Us", section: "aboutUs" },
-  { id: 2, title: "Why Us", section: "whyUs" },
-  { id: 3, title: "Testimonials", section: "testimonials" },
+  { id: 1, title: "Home", section: null },
+  { id: 2, title: "About Us", section: "aboutUsRef" },
+  { id: 3, title: "Why Us", section: "whyUsRef" },
+  { id: 4, title: "Testimonials", section: "testimonialsRef" },
 ];
 
 const Navbar = ({ scrollToSection }) => {
   return (
-    <nav className=" fixed top-0 w-full  z-20 bg-slate-700 hover:bg-black text-white rounded-b-2xl ">
+    <nav className="relative z-20 bg-slate-600 text-white">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         className="container py-10 flex justify-between items-center"
       >
-        {/* Logo section */}
         <div>
-          <h1 className="font-bold text-2xl mx-3">Expert Educational Consultancy</h1>
+          <h1 className="font-bold text-2xl">Expert Educational Consultancy</h1>
         </div>
-        {/* Menu section */}
         <div className="hidden lg:block">
           <ul className="flex items-center gap-3">
             {NavbarMenu.map((menu) => (
               <li key={menu.id}>
                 <button
-                  onClick={() => scrollToSection(menu.section)}
+                  onClick={() => menu.section && scrollToSection(menu.section)}
                   className="inline-block py-2 px-3 hover:text-secondary relative group"
                 >
                   {menu.title}
                 </button>
               </li>
             ))}
-               <SignInButton /> 
+            <button className="primary-btn">Sign In</button>
           </ul>
         </div>
-        {/* Mobile Hamburger menu section */}
         <div className="lg:hidden">
           <IoMdMenu className="text-4xl" />
         </div>
