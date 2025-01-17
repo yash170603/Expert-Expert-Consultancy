@@ -44,7 +44,7 @@ const AboutUs = React.forwardRef((props, ref) => {
     </div>
 </section>
   );
-};
+});
 
 
 export default AboutUs;
