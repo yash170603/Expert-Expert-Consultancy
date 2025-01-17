@@ -28,7 +28,7 @@ const Home = () => {
             >
               NEET UG
             </button>
-
+                  
             <button 
               onClick={handleNeetPg} 
               className="bg-white/20 text-white font-semibold px-8 py-4 rounded-lg

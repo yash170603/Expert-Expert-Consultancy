@@ -1,10 +1,11 @@
 import React from "react";
 import Bannerjpg from "../assets/01.jpg"
-import { motion } from "framer-motion";
 
-const AboutUs = () => {
+
+const AboutUs = React.forwardRef((props, ref) => {
   return (
-        <section className="bg-gray-100">
+
+    <section  ref={ref} className="h-screen flex items-center justify-center bg-gray-200 rounded-lg w-3/4 mx-auto" >
     <div className="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
         <motion.div
@@ -44,5 +45,6 @@ const AboutUs = () => {
 </section>
   );
 };
+
 
 export default AboutUs;

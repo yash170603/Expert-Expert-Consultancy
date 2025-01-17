@@ -2,15 +2,16 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 const SignInButton = () => {
     const navigate = useNavigate();
-    const handleSignUp = () => {
+    const handleSignIn = () => {
         navigate('/sign-up');
       };
   return (
     <div>
         <button
-            className="bg-gray-600 text-black px-4 py-2 rounded hover:bg-slate-200 transition-colors"
+            className="bg-white text-black p-1 rounded hover:bg-slate-200 transition-colors"
             onClick={handleSignIn}
           >
+            Sign in!
           </button>
     </div>
   )
