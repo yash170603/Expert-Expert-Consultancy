@@ -10,10 +10,12 @@ const NeetPG = () => {
   const aboutUsRef = useRef(null);
   const whyUsRef = useRef(null);
   const testimonialsRef = useRef(null);
+  const footerRef = useRef(null);
   const refs = {
     aboutUsRef,
     whyUsRef,
     testimonialsRef,
+    footerRef,
   };
 
   const scrollToSection = (section) => {
@@ -49,7 +51,7 @@ const NeetPG = () => {
         >
           <Testimonials />
         </section>
-        <section id="footer">
+        <section id="footer" ref={footerRef} className="border-2 rounded-xl border-white p-4">
           <Footer />
         </section>
       </div>
