@@ -18,6 +18,7 @@ const App = () => {
           <Route path="/neet-ug" element={<NeetUG />} />
         </Routes>
       </BrowserRouter>
+      
     </div>
   );
 };
