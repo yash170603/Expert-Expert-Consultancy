@@ -4,15 +4,18 @@ import AboutUs from "./AboutUs";
 import WhyUs from "./WhyUs";
 import Testimonials from "./Testimonials";
 import Navbar from "./Navbar";
+import Footer from "./Footer/Footer.jsx";
 
 const NeetPG = () => {
   const aboutUsRef = useRef(null);
   const whyUsRef = useRef(null);
   const testimonialsRef = useRef(null);
+  const footerRef = useRef(null);
   const refs = {
     aboutUsRef,
     whyUsRef,
     testimonialsRef,
+    footerRef,
   };
 
   const scrollToSection = (section) => {
@@ -26,15 +29,30 @@ const NeetPG = () => {
       <Navbar scrollToSection={scrollToSection} />
       <TopComponent />
       <div className=" mx-auto px-4 space-y-24 py-24 ">
-        <section ref={aboutUsRef} id="about-us" className="border-2 rounded-xl border-white  p-4">
+        <section
+          ref={aboutUsRef}
+          id="about-us"
+          className="border-2 rounded-xl border-white  p-4"
+        >
           <AboutUs />
         </section>
 
-        <section ref={whyUsRef} id="why-us" className="border-2 rounded-xl border-white p-4">
+        <section
+          ref={whyUsRef}
+          id="why-us"
+          className="border-2 rounded-xl border-white p-4"
+        >
           <WhyUs />
         </section>
-        <section ref={testimonialsRef} id="testimonials" className="border-2 rounded-xl border-white p-4">
+        <section
+          ref={testimonialsRef}
+          id="testimonials"
+          className="border-2 rounded-xl border-white p-4"
+        >
           <Testimonials />
+        </section>
+        <section id="footer" ref={footerRef} className="border-2 rounded-xl border-white p-4">
+          <Footer />
         </section>
       </div>
     </div>
