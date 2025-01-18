@@ -7,6 +7,7 @@ import SignInPage from "./components/SignInPage";
 import SignUpPage from "./components/SignUpPage";
 import TermsAndCondition from "./components/Footer/TermsAndCondition";
 import RefundRule from "./components/Footer/RefundRule.jsx";
+import Dashboard from "./components/Dashboard.jsx";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/neet-ug" element={<NeetUG />} />
           <Route path="/terms-and-conditions" element={<TermsAndCondition />} />
           <Route path="/refund-rule" element={<RefundRule />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </div>
