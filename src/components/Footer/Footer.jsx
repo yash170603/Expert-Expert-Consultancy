@@ -5,7 +5,7 @@ import FooterSection2 from "./FooterSection2";
 import FooterSocialHandle from "./FooterSocialHandles";
 import FooterReachUs from "./FooterReachUs";
 
-const Footer = () => {
+const Footer = React.forwardRef((props,ref) => {
   return (
     <footer className="py-16 bg-[#f7f7f7]">
       <motion.div
@@ -33,6 +33,6 @@ const Footer = () => {
       </motion.div>
     </footer>
   );
-};
+});
 
 export default Footer;
