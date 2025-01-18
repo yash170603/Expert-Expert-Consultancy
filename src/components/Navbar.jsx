@@ -47,7 +47,7 @@ const navigate = useNavigate()
     //     </div>
     //   </motion.div>
     // </nav>
-    <nav className="fixed top-0 left-0 text-xl right-0 z-20 p-4 bg-#613E03 backdrop-blur-sm">
+    <nav className="fixed top-0 left-0 text-xl right-0 z-20 p-7 bg-slate-900/95 backdrop-blur-sm">
     <motion.div
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
@@ -57,7 +57,7 @@ const navigate = useNavigate()
         <h1 className="font-bold text-3xl text-white">Expert Educational Consultancy</h1>
       </div>
       <div className="hidden lg:block">
-        <ul className="flex items-center gap-6 p-3 text-xl font-medium ">
+        <ul className="flex items-center gap-6 p-3 text-3xl ">
           {NavbarMenu.map((menu) => (
             <li key={menu.id}>
               <button
@@ -68,7 +68,7 @@ const navigate = useNavigate()
               </button>
             </li>
           ))}
-          <button className="ml-4 px-4 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200" onClick={handleClick}>
+          <button className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200" onClick={handleClick}>
             Sign In
           </button>
         </ul>

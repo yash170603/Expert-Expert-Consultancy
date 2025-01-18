@@ -12,13 +12,10 @@ const AboutUs = React.forwardRef((props, ref) => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-bold text-yellow-400 sm:text-4xl mb-6">
-          <span className="relative inline-block">
-          <span className="text-yellow-400">About Us</span>
-          <span className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full"></span>
-        </span>
+          <h2 className="text-3xl font-extrabold text-yellow-400 sm:text-4xl mb-6">
+            About Us
           </h2>
-          <p className="text-xl  text-white hover:cursor-pointer">
+          <p className="text-3xl  text-white hover:underline hover:cursor-pointer">
             Expert Educational Consultancy was conceptualised and incorporated
             in 1995 with a permanent office in Delhi, in response to the growing
             concerns in MBBS / BDS / BAMS / BHMS / MD / MS / Diploma / FCPS /
