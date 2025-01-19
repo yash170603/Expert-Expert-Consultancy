@@ -129,6 +129,7 @@ export default Navbar;
 //             animate={{ opacity: 1, x: 0 }}
 //             className="relative z-10"
 //           >
+            
 //             <h1 className="font-bold text-xl md:text-2xl bg-gradient-to-r from-white to-yellow-200 bg-clip-text text-transparent">
 //               Expert Educational Consultancy
 //             </h1>
