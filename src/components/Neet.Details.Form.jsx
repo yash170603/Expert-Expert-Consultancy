@@ -1,13 +1,16 @@
+
+// pankaj this is for the test only, copy paste your og code here
+
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { Loader2, User, Mail, Phone, Lock } from 'lucide-react';
 import toast, { Toaster } from "react-hot-toast";
-import doctorSignup from "../assets/doctorSignup.png";
+import banner from '../assets/banner.png'
 
-const SignupForm = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+const NeetDetails = () => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
 
@@ -22,10 +25,10 @@ const SignupForm = () => {
     }
     setIsSubmitting(false);
   };
-
   return (
-  
-      <div className="w-full max-w-md bg-white bg-opacity-80 shadow-2xl rounded-lg px-8 pt-6 pb-8 mb-4">
+
+
+<div className="w-full max-w-md bg-white bg-opacity-80 shadow-2xl rounded-lg px-8 pt-6 pb-8 mb-4 " >
         <Toaster position="top-center" reverseOrder={false} />
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Sign Up</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -148,22 +151,16 @@ const SignupForm = () => {
             </p>
           </div> */}
         </form>
-       
+        {/* <p className="text-center text-gray-500 text-xs mt-4">
+          &copy; Expert Educational Consultancy. All rights reserved.
+        </p> */}
       </div>
-    
-  );
-};
+   
+  )
+}
 
-export default SignupForm;
+export default NeetDetails
 
-{/* <div   this was the bacground image of doctor 
-className="min-h-screen flex items-center justify-center p-6"
-style={{
-  backgroundImage: `url(${doctorSignup})`,
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  opacity:0.9
 
-}}
->
-</div> */}
+// <div  className="min-h-screen flex items-center justify-center p-6" style={{backgroundImage: `url(${banner})`,backgroundSize: "cover",backgroundPosition: "center",opacity:0.9}}>
+// </div>
