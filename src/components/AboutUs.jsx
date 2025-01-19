@@ -2,7 +2,7 @@ import React from "react";
 import Bannerjpg from "../assets/01.jpg";
 import { motion } from "framer-motion";
 
-const AboutUs = React.forwardRef((props, ref) => {
+const AboutUs = React.forwardRef((props, ref) => {  // props  need to be passed even if not being used
   return (
     <div className="py-10  p-2   border-spacing-1">
       <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-12">

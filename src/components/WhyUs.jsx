@@ -28,7 +28,7 @@ const itemVariants = {
   }
 };
 
-function WhyChooseUs() {
+const  WhyChooseUs= React.forwardRef((prop,ref)=> {
   return (
     <div className="bg-blue-950 py-8">
       <div className="max-w-6xl mx-auto px-4">
@@ -72,7 +72,7 @@ function WhyChooseUs() {
       </div>
     </div>
   );
-}
+});
 
 export default WhyChooseUs;
 
