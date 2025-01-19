@@ -1,108 +1,165 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { Loader2 } from "lucide-react";
-import toast,{Toaster} from "react-hot-toast";
-import { Link } from "react-router-dom";
-
+import { useNavigate, Link } from "react-router-dom";
+import { Loader2, User, Mail, Phone, Lock } from 'lucide-react';
+import toast, { Toaster } from "react-hot-toast";
+import doctorSignup from "../assets/doctorSignup.png";
 
 const SignupForm = () => {
-   const[buttonClicked,setButtonClicked]=useState(false)  
-  const { register, handleSubmit } = useForm();
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-    password: "",
-  });
-   const navigate= useNavigate(); 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const navigate = useNavigate();
 
-    
-        const onSubmit = async  (data) => {
-           
-          setFormData(data);
-            setButtonClicked(true)
-            try {
-          const apiResponse= await axios.post('http://localhost:3000/api/signup,',data);
-            
-          // console.log(apiResponse.data)
-          
-            navigate('/Dashboard')
-        }
-        catch (error) {
-          //console.log(error)
-          toast.error('An error occured, please try again later')
-     }
-     setButtonClicked(false)
-       } 
-       
-  
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    try {
+      await axios.post('http://localhost:3000/api/signup', data);
+      toast.success('Signup successful!');
+      navigate('/Dashboard');
+    } catch (error) {
+      toast.error('An error occurred. Please try again later.');
+    }
+    setIsSubmitting(false);
+  };
 
   return (
-    <div className="bg-gradient-to-br from-slate-600 via-blue-900 to-blue-950 min-h-screen flex flex-col justify-center items-center p-6">
-      <div className="container flex justify-center items-center h-3/4 w-full max-w-lg bg-slate-500 p-8 rounded-lg shadow-lg border-2 border-yellow-600">
-        <div className="w-full">
-          <h1 className="text-2xl font-bold text-center text-white mb-4">Sign Up!</h1>
-          <p className="text-center text-gray-300 mb-6">Fill in the details to get started.</p>
+    <div
+      className="min-h-screen flex items-center justify-center p-6"
+      style={{
+        backgroundImage: `url(${doctorSignup})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        opacity:0.9
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <Toaster />
-            <div className="grid grid-cols-2 gap-4">
+      }}
+    >
+      <div className="w-full max-w-md bg-white bg-opacity-80 shadow-2xl rounded-lg px-8 pt-6 pb-8 mb-4">
+        <Toaster position="top-center" reverseOrder={false} />
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Sign Up</h2>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="mb-6 flex space-x-4">
+            <div className="w-1/2">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
+                First Name
+              </label>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+                <input
+                  {...register("firstName", { required: "First name is required" })}
+                  className="border rounded w-full py-2 px-3 pl-10 text-gray-700 focus:outline-none focus:shadow-outline"
+                  id="firstName"
+                  type="text"
+                  placeholder="John"
+                />
+              </div>
+              {errors.firstName && <p className="text-red-500 text-xs italic">{errors.firstName.message}</p>}
+            </div>
+            <div className="w-1/2">
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lastName">
+                Last Name
+              </label>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+                <input
+                  {...register("lastName", { required: "Last name is required" })}
+                  className="border rounded w-full py-2 px-3 pl-10 text-gray-700 focus:outline-none focus:shadow-outline"
+                  id="lastName"
+                  type="text"
+                  placeholder="Doe"
+                />
+              </div>
+              {errors.lastName && <p className="text-red-500 text-xs italic">{errors.lastName.message}</p>}
+            </div>
+          </div>
+          <div className="mb-6">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+              Email
+            </label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
               <input
-                type="text"
-                {...register("firstName", { required: true })}
-                placeholder="First Name *"
-                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              />
-              <input
-                type="text"
-                {...register("lastName", { required: true })}
-                placeholder="Last Name *"
-                className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                {...register("email", { 
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Invalid email address"
+                  }
+                })}
+                className="border rounded w-full py-2 px-3 pl-10 text-gray-700 focus:outline-none focus:shadow-outline"
+                id="email"
+                type="email"
+                placeholder="john@example.com"
               />
             </div>
-
-            <input
-              type="email"
-              {...register("email", { required: true })}
-              placeholder="Email address *"
-              className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            />
-
-            <input
-              type="tel"
-              {...register("phoneNumber", { required: true })}
-              placeholder="Mobile Number"
-              className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            />
-
-            <input
-              type="password"
-              {...register("password", { required: true })}
-              placeholder="Password *"
-              className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            />
-
+            {errors.email && <p className="text-red-500 text-xs italic">{errors.email.message}</p>}
+          </div>
+          <div className="mb-6">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phoneNumber">
+              Phone Number
+            </label>
+            <div className="relative">
+              <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+              <input
+                {...register("phoneNumber", { required: "Phone number is required" })}
+                className="border rounded w-full py-2 px-3 pl-10 text-gray-700 focus:outline-none focus:shadow-outline"
+                id="phoneNumber"
+                type="tel"
+                placeholder="(123) 456-7890"
+              />
+            </div>
+            {errors.phoneNumber && <p className="text-red-500 text-xs italic">{errors.phoneNumber.message}</p>}
+          </div>
+          <div className="mb-6">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+              Password
+            </label>
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+              <input
+                {...register("password", { 
+                  required: "Password is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password must be at least 8 characters"
+                  }
+                })}
+                className="border rounded w-full py-2 px-3 pl-10 text-gray-700 focus:outline-none focus:shadow-outline"
+                id="password"
+                type="password"
+                placeholder="********"
+              />
+            </div>
+            {errors.password && <p className="text-red-500 text-xs italic">{errors.password.message}</p>}
+          </div>
+          <div className="flex items-center justify-between">
             <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out"
+              disabled={isSubmitting}
             >
-              {buttonClicked ? (
+              {isSubmitting ? (
                 <div className="flex justify-center items-center">
-                  <Loader2 className="animate-spin" />
+                  <Loader2 className="animate-spin mr-2" size={18} />
+                  <span>Signing Up...</span>
                 </div>
               ) : (
-                <p className="text-white">Sign Up!</p>
+                "Sign Up"
               )}
             </button>
-            <div className="flex justify-center items-center mt-4">
-              <p className="text-gray-300">Already have an account? </p>
-              <Link to={'/sign-in'} className="text-blue-400 hover:underline ml-2">Sign In!</Link>
-            </div>
-          </form>
-        </div>
+          </div>
+          <div className="text-center mt-6">
+            <p className="text-gray-600">
+              Already have an account?{" "}
+              <Link to="/sign-in" className="text-blue-500 hover:text-blue-700 font-semibold">
+                Sign In
+              </Link>
+            </p>
+          </div>
+        </form>
+        <p className="text-center text-gray-500 text-xs mt-4">
+          &copy; Expert Educational Consultancy. All rights reserved.
+        </p>
       </div>
     </div>
   );

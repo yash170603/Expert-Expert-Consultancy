@@ -14,10 +14,10 @@ const App = () => {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Home />} /> */}
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
-          <Route path="/neet-pg" element={<NeetPG />} />
+          <Route path="/" element={<NeetPG />} />   {/* Home page */}
           <Route path="/neet-ug" element={<NeetUG />} />
           <Route path="/terms-and-conditions" element={<TermsAndCondition />} />
           <Route path="/refund-rule" element={<RefundRule />} />
