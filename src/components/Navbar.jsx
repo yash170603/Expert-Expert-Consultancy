@@ -8,6 +8,7 @@ const NavbarMenu = [
   { id: 2, title: "About Us", section: "aboutUsRef" },
   { id: 3, title: "Why Us", section: "whyUsRef" },
   { id: 4, title: "Testimonials", section: "testimonialsRef" },
+  { id: 5, title: "Contact Us", section: "footerRef" },
 ];
 
 const Navbar = ({ scrollToSection }) => {
@@ -15,7 +16,7 @@ const Navbar = ({ scrollToSection }) => {
 const navigate = useNavigate() 
      
   const handleClick= ()=>{
-        navigate("/sign-in")
+        navigate("/sign-up")
   }
   return (
     // <nav className=" p-3 rounded-3xl z-20 bg-slate-800 text-white fixed top-0 right-0">
@@ -68,8 +69,10 @@ const navigate = useNavigate()
               </button>
             </li>
           ))}
-          <button className="ml-4 px-4 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200" onClick={handleClick}>
-            Sign In
+ 
+ 
+          <button className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200" onClick={handleClick}>
+ 
           </button>
         </ul>
       </div>
