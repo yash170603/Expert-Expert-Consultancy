@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
 
 const NavbarMenu = [
-  { id: 1, title: "Home", section: null },
-  { id: 2, title: "About Us", section: "aboutUsRef" },
-  { id: 3, title: "Why Us", section: "whyUsRef" },
-  { id: 4, title: "Testimonials", section: "testimonialsRef" },
-  { id: 5, title: "Contact Us", section: "footerRef" },
+ 
+  { id: 1, title: "About Us", section: "aboutUsRef" },
+  { id: 2, title: "Why Us", section: "whyUsRef" },
+  { id: 3, title: "Testimonials", section: "testimonialsRef" },
+  { id: 4, title: "Contact Us", section: "footerRef" },
 ];
 
 const Navbar = ({ scrollToSection }) => {
