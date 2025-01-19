@@ -111,7 +111,7 @@ const testimonials = [
   }
 ];
 
-function Testimonials() {
+const Testimonials= React.forwardRef((props,ref) {
   return (
     <div className="py-12 relative bg-blue-950">
       {/* Background Elements */}
@@ -216,7 +216,7 @@ function Testimonials() {
       </div>
     </div>
   );
-}
+});
 
 export default Testimonials;
 
