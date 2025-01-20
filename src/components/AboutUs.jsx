@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const AboutUs = React.forwardRef((props, ref) => {  // props  need to be passed even if not being used
   return (
-    <div className="py-16  p-2   border-spacing-1">
+    <div className="py-10  p-2   border-spacing-1">
       <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-12">
         <motion.div
           initial={{ x: -100, opacity: 0 }}
@@ -18,7 +18,7 @@ const AboutUs = React.forwardRef((props, ref) => {  // props  need to be passed 
           <span className="absolute -bottom-1 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full"></span>
         </span>
           </h2>
-          <p className="text-xl  text-white hover:cursor-pointer">
+          <p className="text-lg  text-white hover:cursor-pointer">
             Expert Educational Consultancy was conceptualised and incorporated
             in 1995 with a permanent office in Delhi, in response to the growing
             concerns in MBBS / BDS / BAMS / BHMS / MD / MS / Diploma / FCPS /

@@ -32,7 +32,7 @@ const FooterReachUs = () => {
   return (
     <div className="flex flex-col space-y-6 py-3">
       {/* Heading */}
-      <h2 className="text-lg font-bold">Reach Us</h2>
+      <h2 className="text-2xl font-bold">Reach Us</h2>
       <h3 className="text-sm font-medium">Contact our Support Team</h3>
 
       {/* Contact Links */}
