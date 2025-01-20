@@ -8,7 +8,7 @@ import SignInPage from "./components/SignInPage";
 import TermsAndCondition from "./components/Footer/TermsAndCondition";
 import RefundRule from "./components/Footer/RefundRule.jsx";
 import FAQ from "./components/FAQ.jsx";
-import Dashboard from "./components/Dashboard.jsx";
+ 
  
 import ScrollSignup from "./components/scrollSignup.jsx";
 

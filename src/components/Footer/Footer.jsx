@@ -62,18 +62,19 @@ const Footer = React.forwardRef((props, ref) => {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-white">Reach Us</h3>
               <div className="space-y-3">
-                <a href="mailto:info@expertedu.com" 
+                <a href="mailto:info@expertedu.com"  target="_blank" 
                    className="flex items-center space-x-3 text-gray-300 hover:text-yellow-400 transition-colors">
                   <FaEnvelope className="w-4 h-4" />
                   <span>info@expertedu.com</span>
                 </a>
-                <a href="tel:9313555010" 
+                <a href="tel:9313555010"   target="_blank"
                    className="flex items-center space-x-3 text-gray-300 hover:text-yellow-400 transition-colors">
                   <FaPhoneAlt className="w-4 h-4" />
                   <span>+91 93135 55010</span>
                 </a>
-                <a href="https://goo.gl/maps/your-map-link" 
-                   className="flex items-center space-x-3 text-gray-300 hover:text-yellow-400 transition-colors group">
+                <a href="https://www.google.com/maps/place/Expert+Educational+Consultancy+Estd.+1995/@28.712546,77.1371463,17z/data=!3m1!4b1!4m6!3m5!1s0x390d017caca5521d:0xfab588b644feabdd!8m2!3d28.712546!4d77.1371463!16s%2Fg%2F1tf34b9f?entry=ttu&g_ep=EgoyMDI1MDExNC4wIKXMDSoASAFQAw%3D%3D" 
+                   className="flex items-center space-x-3 text-gray-300 hover:text-yellow-400 transition-colors group"
+                   target="_blank">
                   <FaBuilding className="w-4 h-4 mt-1 flex-shrink-0" />
                   <span className="group-hover:text-yellow-400 text-sm">
                     104, Aditya Complex 2, D-Block,
@@ -109,15 +110,15 @@ const Footer = React.forwardRef((props, ref) => {
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-white">Connect With Us</h3>
               <div className="flex space-x-3 mb-4">
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.facebook.com/people/Expert-Educational-Consultancy-Estd1995/100067182972359/?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer"
                    className="p-2 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
                   <FaFacebook className="w-5 h-5 text-blue-500" />
                 </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                <a href= "https://www.instagram.com/experteducationalconsultancy/?hl=en"target="_blank" rel="noopener noreferrer"
                    className="p-2 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
                   <FaInstagram className="w-5 h-5 text-pink-500" />
                 </a>
-                <a href="https://telegram.org" target="_blank" rel="noopener noreferrer"
+                <a href="https://t.me/ExpertNEETUG"target="_blank" rel="noopener noreferrer"
                    className="p-2 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
                   <FaTelegram className="w-5 h-5 text-blue-400" />
                 </a>
