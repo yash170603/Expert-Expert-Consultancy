@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NeetPG from "./components/NeetPG";
 import NeetUG from "./components/NeetUG";
 import SignInPage from "./components/SignInPage";
-
+import Home from "./components/Home";
 import TermsAndCondition from "./components/Footer/TermsAndCondition";
 import RefundRule from "./components/Footer/RefundRule.jsx";
 import FAQ from "./components/FAQ.jsx";
@@ -17,7 +17,7 @@ const App = () => {
     <div>
       <BrowserRouter>
         <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
+           <Route path="/bbb" element={<Home />} /> 
           <Route path="/" element={<NeetPG />} />   {/* Home page */}
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/neet-ug" element={<NeetUG />} />
