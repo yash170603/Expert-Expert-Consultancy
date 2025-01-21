@@ -1,34 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import backgroundImage from "../assets/signInbackgroundimage.webp"; // Importing image
+import backgroundImage from "../assets/signInbackgroundimage.webp";
 
 const SignInPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
 
-  const handleSignIn = (e) => {
-    e.preventDefault(); // Prevent form submission
-    let valid = true;
-
-    if (!email) {
-      setEmailError(true);
-      valid = false;
-    } else {
-      setEmailError(false);
-    }
-
-    if (!password) {
-      setPasswordError(true);
-      valid = false;
-    } else {
-      setPasswordError(false);
-    }
-
-    if (valid) {
-      alert("Sign-In successful!"); // Placeholder action
-    }
+  const onSubmit = (data) => {
+    alert("Sign-In successful!"); // Placeholder action
+    console.log(data);
   };
 
   return (
@@ -43,7 +27,7 @@ const SignInPage = () => {
         <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
           Sign In
         </h2>
-        <form onSubmit={handleSignIn}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -53,15 +37,17 @@ const SignInPage = () => {
             </label>
             <input
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                emailError ? "border-red-500" : ""
+                errors.email ? "border-red-500" : ""
               }`}
               id="email"
               type="email"
               placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              {...register("email", { 
+                required: true,
+                pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i 
+              })}
             />
-            {emailError && (
+            {errors.email && (
               <p className="text-red-500 text-xs italic">
                 Please provide a valid email.
               </p>
@@ -76,15 +62,14 @@ const SignInPage = () => {
             </label>
             <input
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                passwordError ? "border-red-500" : ""
+                errors.password ? "border-red-500" : ""
               }`}
               id="password"
               type="password"
               placeholder="******************"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              {...register("password", { required: true })}
             />
-            {passwordError && (
+            {errors.password && (
               <p className="text-red-500 text-xs italic">
                 Please provide a password.
               </p>
