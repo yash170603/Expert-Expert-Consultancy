@@ -18,7 +18,6 @@ const App = () => {
         <Routes>
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/" element={<NeetPG />} /> {/* Home page */}
-          <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/neet-ug" element={<NeetUG />} />
           <Route path="/terms-and-conditions" element={<TermsAndCondition />} />
           <Route path="/refund-rule" element={<RefundRule />} />
@@ -26,7 +25,6 @@ const App = () => {
           <Route path="/sign-up" element={<ScrollSignup />} />
           <Route path="/neet-ug" element={<NeetUG />} />
           <Route path="/refund-rule" element={<RefundRule />} />
-          <Route path="/sign-up" element={<ScrollSignup />} />
         </Routes>
       </BrowserRouter>
     </div>
