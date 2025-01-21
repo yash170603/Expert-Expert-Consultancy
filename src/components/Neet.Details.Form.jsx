@@ -184,80 +184,80 @@
 //             />
 //           </div>
 
-//           <div className="mb-6">
-//             <Controller
-//               name="tenthState"
-//               control={control}
-//               defaultValue=""
-//               rules={{ required: "Tenth State is required" }}
-//               render={({ field }) => (
-//                 <FormControl fullWidth required>
-//                   <InputLabel>Tenth State</InputLabel>
-//                   <Select
-//                     {...field}
-//                     label="Tenth State"
-//                     sx={{ backgroundColor: "white" }} // White background
-//                   >
-//                     {states.map((state, index) => (
-//                       <MenuItem key={index} value={state}>
-//                         {state}
-//                       </MenuItem>
-//                     ))}
-//                   </Select>
-//                 </FormControl>
-//               )}
-//             />
-//           </div>
+          // <div className="mb-6">
+          //   <Controller
+          //     name="tenthState"
+          //     control={control}
+          //     defaultValue=""
+          //     rules={{ required: "Tenth State is required" }}
+          //     render={({ field }) => (
+          //       <FormControl fullWidth required>
+          //         <InputLabel>Tenth State</InputLabel>
+          //         <Select
+          //           {...field}
+          //           label="Tenth State"
+          //           sx={{ backgroundColor: "white" }} // White background
+          //         >
+          //           {states.map((state, index) => (
+          //             <MenuItem key={index} value={state}>
+          //               {state}
+          //             </MenuItem>
+          //           ))}
+          //         </Select>
+          //       </FormControl>
+          //     )}
+          //   />
+          // </div>
 
-//           <div className="mb-6">
-//             <Controller
-//               name="eleventhState"
-//               control={control}
-//               defaultValue=""
-//               rules={{ required: "Eleventh State is required" }}
-//               render={({ field }) => (
-//                 <FormControl fullWidth required>
-//                   <InputLabel>Eleventh State</InputLabel>
-//                   <Select
-//                     {...field}
-//                     label="Eleventh State"
-//                     sx={{ backgroundColor: "white" }} // White background
-//                   >
-//                     {states.map((state, index) => (
-//                       <MenuItem key={index} value={state}>
-//                         {state}
-//                       </MenuItem>
-//                     ))}
-//                   </Select>
-//                 </FormControl>
-//               )}
-//             />
-//           </div>
+          // <div className="mb-6">
+          //   <Controller
+          //     name="eleventhState"
+          //     control={control}
+          //     defaultValue=""
+          //     rules={{ required: "Eleventh State is required" }}
+          //     render={({ field }) => (
+          //       <FormControl fullWidth required>
+          //         <InputLabel>Eleventh State</InputLabel>
+          //         <Select
+          //           {...field}
+          //           label="Eleventh State"
+          //           sx={{ backgroundColor: "white" }} // White background
+          //         >
+          //           {states.map((state, index) => (
+          //             <MenuItem key={index} value={state}>
+          //               {state}
+          //             </MenuItem>
+          //           ))}
+          //         </Select>
+          //       </FormControl>
+          //     )}
+          //   />
+          // </div>
 
-//           <div className="mb-6">
-//             <Controller
-//               name="twelfthState"
-//               control={control}
-//               defaultValue=""
-//               rules={{ required: "Twelfth State is required" }}
-//               render={({ field }) => (
-//                 <FormControl fullWidth required>
-//                   <InputLabel>Twelfth State</InputLabel>
-//                   <Select
-//                     {...field}
-//                     label="Twelfth State"
-//                     sx={{ backgroundColor: "white" }} // White background
-//                   >
-//                     {states.map((state, index) => (
-//                       <MenuItem key={index} value={state}>
-//                         {state}
-//                       </MenuItem>
-//                     ))}
-//                   </Select>
-//                 </FormControl>
-//               )}
-//             />
-//           </div>
+          // <div className="mb-6">
+          //   <Controller
+          //     name="twelfthState"
+          //     control={control}
+          //     defaultValue=""
+          //     rules={{ required: "Twelfth State is required" }}
+          //     render={({ field }) => (
+          //       <FormControl fullWidth required>
+          //         <InputLabel>Twelfth State</InputLabel>
+          //         <Select
+          //           {...field}
+          //           label="Twelfth State"
+          //           sx={{ backgroundColor: "white" }} // White background
+          //         >
+          //           {states.map((state, index) => (
+          //             <MenuItem key={index} value={state}>
+          //               {state}
+          //             </MenuItem>
+          //           ))}
+          //         </Select>
+          //       </FormControl>
+          //     )}
+          //   />
+          // </div>
 //         </form>
 //       </div>
 //     </div>
@@ -433,6 +433,84 @@ const NeetDetails = () => {
             )}
           />
         </div>
+
+        <div className="mb-6">
+            <Controller
+              name="tenthState"
+              control={control}
+              defaultValue=""
+              rules={{ required: "Tenth State is required" }}
+              render={({ field }) => (
+                <FormControl fullWidth required>
+                  <InputLabel>Tenth State</InputLabel>
+                  <Select
+                    {...field}
+                    label="Tenth State"
+                    sx={{ backgroundColor: "white" }} // White background
+                  >
+                    {states.map((state, index) => (
+                      <MenuItem key={index} value={state}>
+                        {state}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+            />
+          </div>
+
+          <div className="mb-6">
+            <Controller
+              name="eleventhState"
+              control={control}
+              defaultValue=""
+              rules={{ required: "Eleventh State is required" }}
+              render={({ field }) => (
+                <FormControl fullWidth required>
+                  <InputLabel>Eleventh State</InputLabel>
+                  <Select
+                    {...field}
+                    label="Eleventh State"
+                    sx={{ backgroundColor: "white" }} // White background
+                  >
+                    {states.map((state, index) => (
+                      <MenuItem key={index} value={state}>
+                        {state}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+            />
+          </div>
+
+          <div className="mb-6">
+            <Controller
+              name="twelfthState"
+              control={control}
+              defaultValue=""
+              rules={{ required: "Twelfth State is required" }}
+              render={({ field }) => (
+                <FormControl fullWidth required>
+                  <InputLabel>Twelfth State</InputLabel>
+                  <Select
+                    {...field}
+                    label="Twelfth State"
+                    sx={{ backgroundColor: "white" }} // White background
+                  >
+                    {states.map((state, index) => (
+                      <MenuItem key={index} value={state}>
+                        {state}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+            />
+          </div>
+                  
+
+      
 
         {/* Repeat for other states (tenthState, eleventhState, twelfthState) */}
 {/* 
