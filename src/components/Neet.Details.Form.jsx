@@ -1,166 +1,267 @@
+import React from "react";
+import {
+  Box,
+  TextField,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+  Button,
+} from "@mui/material";
+import { useForm, Controller } from "react-hook-form";
 
-// pankaj this is for the test only, copy paste your og code here
-
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
-import { Loader2, User, Mail, Phone, Lock } from 'lucide-react';
-import toast, { Toaster } from "react-hot-toast";
-import banner from '../assets/banner.png'
+const states = [
+  "Andhra Pradesh",
+  "Arunachal Pradesh",
+  "Assam",
+  "Bihar",
+  "Chhattisgarh",
+  "Goa",
+  "Gujarat",
+  "Haryana",
+  "Himachal Pradesh",
+  "Jharkhand",
+  "Karnataka",
+  "Kerala",
+  "Madhya Pradesh",
+  "Maharashtra",
+  "Manipur",
+  "Meghalaya",
+  "Mizoram",
+  "Nagaland",
+  "Odisha",
+  "Punjab",
+  "Rajasthan",
+  "Sikkim",
+  "Tamil Nadu",
+  "Telangana",
+  "Tripura",
+  "Uttar Pradesh",
+  "Uttarakhand",
+  "West Bengal",
+  "Delhi",
+  "Lakshadweep",
+  "Puducherry",
+  "Andaman and Nicobar Islands",
+  "Dadra and Nagar Haveli and Daman and Diu",
+  "Outside India",
+];
+const course = ["None", "MBBS", "BAMS", "BHMS", "BDS"];
 
 const NeetDetails = () => {
-    const [isSubmitting, setIsSubmitting] = useState(false);
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const navigate = useNavigate();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const onSubmit = async (data) => {
-    setIsSubmitting(true);
-    try {
-      await axios.post('http://localhost:3000/api/signup', data);
-      toast.success('Signup successful!');
-      navigate('/Dashboard');
-    } catch (error) {
-      toast.error('An error occurred. Please try again later.');
-    }
-    setIsSubmitting(false);
+  const onSubmit = (data) => {
+    console.log(data);
   };
+
   return (
-
-
-<div className="w-full max-w-md bg-white bg-opacity-80 shadow-2xl rounded-lg px-8 pt-6 pb-8 mb-4 " >
-        <Toaster position="top-center" reverseOrder={false} />
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Sign Up</h2>
+    <div className="relative  pl-20 pr-4 md:pl-4 w-full">
+      <div className="w-full max-w-md bg-white bg-opacity-80 shadow-2xl rounded-lg px-8 pt-6 pb-8 mb-4">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-6 flex space-x-4">
             <div className="w-1/2">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
-                First Name
-              </label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-                <input
-                  {...register("firstName", { required: "First name is required" })}
-                  className="border rounded w-full py-2 px-3 pl-10 text-gray-700 focus:outline-none focus:shadow-outline"
-                  id="firstName"
-                  type="text"
-                  placeholder="John"
-                />
-              </div>
-              {errors.firstName && <p className="text-red-500 text-xs italic">{errors.firstName.message}</p>}
+              <Controller
+                name="neetScore"
+                control={control}
+                defaultValue=""
+                rules={{ required: "NEET Score is required" }}
+                render={({ field }) => (
+                  <TextField
+                    label="NEET Score"
+                    variant="outlined"
+                    type="number"
+                    fullWidth
+                    required
+                    {...field}
+                    error={!!errors.neetScore}
+                    helperText={
+                      errors.neetScore ? errors.neetScore.message : ""
+                    }
+                    sx={{ backgroundColor: "white" }} // White background
+                  />
+                )}
+              />
             </div>
             <div className="w-1/2">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lastName">
-                Last Name
-              </label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-                <input
-                  {...register("lastName", { required: "Last name is required" })}
-                  className="border rounded w-full py-2 px-3 pl-10 text-gray-700 focus:outline-none focus:shadow-outline"
-                  id="lastName"
-                  type="text"
-                  placeholder="Doe"
+              <Controller
+                name="airRank"
+                control={control}
+                defaultValue=""
+                rules={{ required: "AIR Rank is required" }}
+                render={({ field }) => (
+                  <TextField
+                    label="AIR Rank"
+                    variant="outlined"
+                    type="number"
+                    fullWidth
+                    required
+                    {...field}
+                    error={!!errors.airRank}
+                    helperText={errors.airRank ? errors.airRank.message : ""}
+                    sx={{ backgroundColor: "white" }} // White background
+                  />
+                )}
+              />
+            </div>
+          </div>
+
+          <div className="mb-6">
+            <Controller
+              name="categoryRank"
+              control={control}
+              defaultValue=""
+              rules={{ required: "Category Rank is required" }}
+              render={({ field }) => (
+                <TextField
+                  label="Category Rank"
+                  variant="outlined"
+                  type="number"
+                  fullWidth
+                  required
+                  {...field}
+                  error={!!errors.categoryRank}
+                  helperText={
+                    errors.categoryRank ? errors.categoryRank.message : ""
+                  }
+                  sx={{ backgroundColor: "white" }} // White background
                 />
-              </div>
-              {errors.lastName && <p className="text-red-500 text-xs italic">{errors.lastName.message}</p>}
-            </div>
-          </div>
-          <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-              Email
-            </label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-              <input
-                {...register("email", { 
-                  required: "Email is required",
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "Invalid email address"
-                  }
-                })}
-                className="border rounded w-full py-2 px-3 pl-10 text-gray-700 focus:outline-none focus:shadow-outline"
-                id="email"
-                type="email"
-                placeholder="john@example.com"
-              />
-            </div>
-            {errors.email && <p className="text-red-500 text-xs italic">{errors.email.message}</p>}
-          </div>
-          <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phoneNumber">
-              Phone Number
-            </label>
-            <div className="relative">
-              <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-              <input
-                {...register("phoneNumber", { required: "Phone number is required" })}
-                className="border rounded w-full py-2 px-3 pl-10 text-gray-700 focus:outline-none focus:shadow-outline"
-                id="phoneNumber"
-                type="tel"
-                placeholder="(123) 456-7890"
-              />
-            </div>
-            {errors.phoneNumber && <p className="text-red-500 text-xs italic">{errors.phoneNumber.message}</p>}
-          </div>
-          <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-              Password
-            </label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-              <input
-                {...register("password", { 
-                  required: "Password is required",
-                  minLength: {
-                    value: 8,
-                    message: "Password must be at least 8 characters"
-                  }
-                })}
-                className="border rounded w-full py-2 px-3 pl-10 text-gray-700 focus:outline-none focus:shadow-outline"
-                id="password"
-                type="password"
-                placeholder="********"
-              />
-            </div>
-            {errors.password && <p className="text-red-500 text-xs italic">{errors.password.message}</p>}
-          </div>
-          <div className="flex items-center justify-between">
-            {/* <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
-              type="submit"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                <div className="flex justify-center items-center">
-                  <Loader2 className="animate-spin mr-2" size={18} />
-                  <span>Signing Up...</span>
-                </div>
-              ) : (
-                "Sign Up"
               )}
-            </button> */}
+            />
           </div>
-          {/* <div className="text-center mt-6">
-            <p className="text-gray-600">
-              Already have an account?{" "}
-              <Link to="/sign-in" className="text-blue-500 hover:text-blue-700 font-semibold">
-                Sign In
-              </Link>
-            </p>
-          </div> */}
+
+          <div className="mb-6">
+            <Controller
+              name="course"
+              control={control}
+              defaultValue=""
+              rules={{ required: "Course is required" }}
+              render={({ field }) => (
+                <FormControl fullWidth required>
+                  <InputLabel>Course</InputLabel>
+                  <Select
+                    {...field}
+                    label="Course"
+                    sx={{ backgroundColor: "white" }} // White background
+                  >
+                    {course.map((course, index) => (
+                      <MenuItem key={index} value={course}>
+                        {course}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+            />
+          </div>
+
+          <div className="mb-6">
+            <Controller
+              name="domicileState"
+              control={control}
+              defaultValue=""
+              rules={{ required: "Domicile State is required" }}
+              render={({ field }) => (
+                <FormControl fullWidth required>
+                  <InputLabel>Domicile State</InputLabel>
+                  <Select
+                    {...field}
+                    label="Domicile State"
+                    sx={{ backgroundColor: "white" }} // White background
+                  >
+                    {states.map((state, index) => (
+                      <MenuItem key={index} value={state}>
+                        {state}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+            />
+          </div>
+
+          <div className="mb-6">
+            <Controller
+              name="tenthState"
+              control={control}
+              defaultValue=""
+              rules={{ required: "Tenth State is required" }}
+              render={({ field }) => (
+                <FormControl fullWidth required>
+                  <InputLabel>Tenth State</InputLabel>
+                  <Select
+                    {...field}
+                    label="Tenth State"
+                    sx={{ backgroundColor: "white" }} // White background
+                  >
+                    {states.map((state, index) => (
+                      <MenuItem key={index} value={state}>
+                        {state}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+            />
+          </div>
+
+          <div className="mb-6">
+            <Controller
+              name="eleventhState"
+              control={control}
+              defaultValue=""
+              rules={{ required: "Eleventh State is required" }}
+              render={({ field }) => (
+                <FormControl fullWidth required>
+                  <InputLabel>Eleventh State</InputLabel>
+                  <Select
+                    {...field}
+                    label="Eleventh State"
+                    sx={{ backgroundColor: "white" }} // White background
+                  >
+                    {states.map((state, index) => (
+                      <MenuItem key={index} value={state}>
+                        {state}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+            />
+          </div>
+
+          <div className="mb-6">
+            <Controller
+              name="twelfthState"
+              control={control}
+              defaultValue=""
+              rules={{ required: "Twelfth State is required" }}
+              render={({ field }) => (
+                <FormControl fullWidth required>
+                  <InputLabel>Twelfth State</InputLabel>
+                  <Select
+                    {...field}
+                    label="Twelfth State"
+                    sx={{ backgroundColor: "white" }} // White background
+                  >
+                    {states.map((state, index) => (
+                      <MenuItem key={index} value={state}>
+                        {state}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+            />
+          </div>
         </form>
-        {/* <p className="text-center text-gray-500 text-xs mt-4">
-          &copy; Expert Educational Consultancy. All rights reserved.
-        </p> */}
       </div>
-   
-  )
-}
+    </div>
+  );
+};
 
-export default NeetDetails
-
-
-// <div  className="min-h-screen flex items-center justify-center p-6" style={{backgroundImage: `url(${banner})`,backgroundSize: "cover",backgroundPosition: "center",opacity:0.9}}>
-// </div>
+export default NeetDetails;

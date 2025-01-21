@@ -174,7 +174,7 @@ const Navbar = ({ scrollToSection }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="ml-4 px-5 py-1.5 bg-gradient-to-r from-blue-600 to-blue-700 text-sm text-white rounded-lg transition-shadow duration-200 hover:shadow-lg hover:shadow-blue-500/25"
-                onClick={() => navigate("/sign-up")}
+                onClick={() => navigate("/sign-in")}
               >
                 Get Started!
               </motion.button>
