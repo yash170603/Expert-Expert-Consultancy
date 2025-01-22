@@ -76,6 +76,7 @@ import SignupForm from "./SignUpPage";
 import NeetDetails from "./Neet.Details.Form";
 import AdditionalDetails from "./AdditionalDetails";
 import { useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 import { useSignUp } from "./context/SignUpContext"; // Adjust the import path as necessary
@@ -126,7 +127,9 @@ const ScrollSignup = () => {
   ];
 
   return (
-    <div className="h-screen w-full bg-blue-950 ">
+  
+    <div className="h-screen w-full- bg-blue-950 ">
+      <Toaster position="top-center" reverseOrder={false} />
       <Timeline data={data} />
       <div className="flex flex-col items-center justify-between bg-blue-950 mb-2">
         <button
@@ -157,6 +160,7 @@ const ScrollSignup = () => {
         </p>
       </div>
     </div>
+    
   );
 };
 
