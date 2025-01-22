@@ -76,11 +76,11 @@ import SignupForm from "./SignUpPage";
 import NeetDetails from "./Neet.Details.Form";
 import AdditionalDetails from "./AdditionalDetails";
 import { useState } from "react";
-import axios from "axios";
+
 import { Link } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 import { useSignUp } from "./context/SignUpContext"; // Adjust the import path as necessary
-import toast from "react-hot-toast";
+import toast,{Toaster} from "react-hot-toast";
 import axios from "axios";
 
 const ScrollSignup = () => {
