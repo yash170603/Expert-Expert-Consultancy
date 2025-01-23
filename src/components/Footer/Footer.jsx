@@ -76,7 +76,7 @@ const Footer = React.forwardRef((props, ref) => {
                    className="flex items-center space-x-3 text-gray-300 hover:text-yellow-400 transition-colors group"
                    target="_blank">
                   <FaBuilding className="w-4 h-4 mt-1 flex-shrink-0" />
-                  <span className="group-hover:text-yellow-400 text-sm">
+                  <span className="hover:text-yellow-400 text-sm">
                     104, Aditya Complex 2, D-Block,
                     Central Market, Prashant Vihar,
                     Delhi-110085
