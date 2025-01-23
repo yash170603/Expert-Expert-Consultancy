@@ -148,6 +148,7 @@ import Navbar from "./Navbar";
 import MissionVision from "./VisionMission";
 import Footer from "./Footer/Footer.jsx";
 import { Particles } from "./Particles";
+import {NEETPGNews} from "./NeetPGNews.jsx";
 
 
 const NeetPG = () => {
@@ -263,6 +264,23 @@ const NeetPG = () => {
               <Testimonials />
             </div>
           </motion.section>
+
+          <motion.section
+            ref={footRef}
+            id="neetpgnews"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative group"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-pink-500/10 to-purple-500/10 rounded-xl backdrop-blur-sm border border-white/10 transition-all duration-300 group-hover:border-white/20" />
+            <div className="relative p-6">
+              <NEETPGNews />
+            </div>
+          </motion.section>
+
+
         </div>
       </main>
       <motion.section
