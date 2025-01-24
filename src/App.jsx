@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
 import NeetPG from "./components/NeetPG";
 import NeetUG from "./components/NeetUG";
 import SignInPage from "./components/SignInPage";
@@ -10,7 +10,9 @@ import FAQ from "./components/FAQ.jsx";
 import ScrollSignup from "./components/scrollSignup.jsx";
 import { SignupProvider } from "./components/context/SignUpContext";
 import ServerFrontend from "./components/serverFrontend.jsx";
-
+import AdminPage from "./components/admin/adminComponents/AdminPage.jsx";
+import TestimonialManager from "./components/admin/adminComponents/TestimonialManager"
+import NewsManager from "./components/admin/adminComponents/NewsManager"
 
 const App = () => {
   return (
@@ -22,6 +24,7 @@ const App = () => {
           <Route path="/" element={<NeetPG />} />   {/* Home page */}
           <Route path="/sign-in" element={<SignInPage />} /> 
           <Route path="/neet-ug" element={<NeetUG />} />
+
           
           <Route path="/terms-and-conditions" element={<TermsAndCondition />} />
           <Route path="/refund-rule" element={<RefundRule />} />
@@ -30,6 +33,10 @@ const App = () => {
           <Route path="/neet-ug" element={<NeetUG />} />
           <Route path="/refund-rule" element={<RefundRule />} />
           <Route path="/check" element={<ServerFrontend />} />
+          <Route path="/admin-dashboard" element={<AdminPage />} />
+          <Route path="/testimonialmanager" element={<TestimonialManager />} />
+          <Route path="/newsmanager" element={<NewsManager />} />
+
         </Routes>
       </BrowserRouter>
       </SignupProvider>
