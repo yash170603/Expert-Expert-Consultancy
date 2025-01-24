@@ -11,6 +11,7 @@ import ScrollSignup from "./components/scrollSignup.jsx";
 import { SignupProvider } from "./components/context/SignUpContext";
 import ServerFrontend from "./components/serverFrontend.jsx";
 import AdminPage from "./components/admin/AdminPage.jsx"
+import AdminLogin from "./components/admin/AdminLogin.jsx";
 
 const App = () => {
   return (
@@ -31,7 +32,8 @@ const App = () => {
           <Route path="/refund-rule" element={<RefundRule />} />
           <Route path="/check" element={<ServerFrontend />} />
          
-           <Route path="/admin" element={<AdminPage />} />
+           <Route path="/admin" element={<AdminLogin/>} />
+          <Route path="/admin-page" element={<AdminPage/>} />
         </Routes>
       </BrowserRouter>
       </SignupProvider>

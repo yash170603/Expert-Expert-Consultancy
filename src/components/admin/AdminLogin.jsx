@@ -1,6 +1,7 @@
 import React from "react"
 import { useForm } from "react-hook-form"
 import { AtSign, Lock, LogIn } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 const AdminLogin = () => {
   const {
@@ -8,10 +9,13 @@ const AdminLogin = () => {
     handleSubmit,
     formState: { errors },
   } = useForm()
-
+   const navigate = useNavigate()
   const onSubmit = (data) => {
     console.log("Login attempted with:", data)
-    // Login logic
+       
+     // if the sign in is successful, navigate to the admin page, currently its the pseuod admin page
+    navigate("/admin-page")
+     
   }
 
   return (
@@ -19,11 +23,11 @@ const AdminLogin = () => {
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-4xl flex overflow-hidden h-[450px]">
         {/* Left Side - Image */}
         <div className="hidden md:block w-1/2 relative">
-          <img
+          {/* <img
             src="/placeholder.svg?height=450&width=450"
             alt=""
             className="absolute inset-0 w-full h-full object-cover"
-          />
+          /> */}
           <div className="absolute inset-0 bg-gradient-to-br from-blue-950/90 to-blue-800/90"></div>
           <div className="absolute inset-0 flex items-center justify-center">
             <h1 className="text-3xl font-bold text-white text-center px-6">Expert Educational Consultancy</h1>
