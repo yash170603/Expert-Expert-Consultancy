@@ -11,7 +11,7 @@ const AdminNavbar = () => {
   ]
 
   return (
-    <nav className="h-screen w-64 bg-blue-950 text-gray-300">
+    <nav className="h-screen w-64 bg-blue-950 border border-white text-gray-300">
       {/* Brand Section */}
       <div className="px-6 py-8 border-b border-white/10">
         <h1 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">
