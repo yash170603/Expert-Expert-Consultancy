@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { NewspaperIcon, ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
 import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 const AdminNavbar = () => {
   const [activeItem, setActiveItem] = useState("News");
@@ -24,7 +24,10 @@ const AdminNavbar = () => {
       {/* Brand Section */}
       <div className="px-6 py-8 border-b border-white/10">
         <h1 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">
-          Expert Educational Consultancy
+          <button>
+            <Link to="/admin-page">Expert Educational Consultancy</Link>
+          </button>
+          
         </h1>
       </div>
 
