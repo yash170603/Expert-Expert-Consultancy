@@ -11,6 +11,7 @@ import ScrollSignup from "./components/scrollSignup.jsx";
 import { SignupProvider } from "./components/context/SignUpContext";
 import ServerFrontend from "./components/serverFrontend.jsx";
 import AdminPage from "./components/admin/AdminPage.jsx"
+import AdminLogin from "./components/admin/AdminLogin.jsx"
 import TestimonialManager from "./components/admin/TestimonialManager"
 import NewsManager from "./components/admin//NewsManager"
 
