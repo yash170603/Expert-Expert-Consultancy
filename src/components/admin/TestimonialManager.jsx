@@ -53,7 +53,7 @@ const TestimonialManager = () => {
   });
   const [isEditing, setIsEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
-  const [showForm, setShowForm] = useState(false);  // New state to control form visibility
+  const [showForm, setShowForm] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -89,13 +89,14 @@ const TestimonialManager = () => {
     }
 
     setCurrentTestimonial({ name: "", text: "", rating: 5, designation: "" });
-    setShowForm(false); // Hide the form after submission
+    setShowForm(false);
   };
 
   const handleEdit = (index) => {
     setCurrentTestimonial(testimonials[index]);
     setIsEditing(true);
     setEditIndex(index);
+    setShowForm(true); // Make sure to show the form on edit
   };
 
   const handleDelete = (index) => {
@@ -105,24 +106,24 @@ const TestimonialManager = () => {
   return (
     <div className="w-full h-screen">
       <div className="flex h-full">
-        {/* Left Sidebar (Admin Navbar) */}
         <div className="w-1/6 bg-blue-950 text-white h-full  p-4">
           <AdminNavbar />
         </div>
 
-        {/* Right Section (Form and Table) */}
         <div className="flex-1 p-4">
-          <h1 className="text-3xl font-bold mb-6">Testimonial Manager</h1>
+          <div className="flex items-center justify-center h-[20px]">
+            <h1 className="text-3xl font-bold">TESTIMONIAL MANAGER</h1>
+          </div>
 
-          {/* Button to show/hide form */}
-          <button
-            onClick={() => setShowForm(!showForm)}
-            className="bg-blue-500 text-white px-6 py-3 rounded-lg mb-6 hover:bg-blue-600 transition-all"
-          >
-            {showForm ? "Cancel" : "Add New Testimonial"}
-          </button>
+          <div className="flex justify-end">
+            <button
+              onClick={() => setShowForm(!showForm)}
+              className="bg-blue-500 text-white px-6 py-3 rounded-lg mb-6 hover:bg-blue-600 transition-all"
+            >
+              {showForm ? "Cancel" : "Add New Testimonial"}
+            </button>
+          </div>
 
-          {/* Add/Edit Form - This is now conditionally rendered */}
           {showForm && (
             <div className="mb-6 p-6 border rounded-lg shadow-md bg-gray-100">
               <h2 className="text-lg font-semibold mb-4">
@@ -173,7 +174,6 @@ const TestimonialManager = () => {
             </div>
           )}
 
-          {/* Testimonial List */}
           <div className="bg-white shadow-md rounded-lg overflow-x-auto">
             <table className="table-auto w-full">
               <thead>
@@ -193,18 +193,20 @@ const TestimonialManager = () => {
                     <td className="px-6 py-4">{testimonial.rating}</td>
                     <td className="px-6 py-4">{testimonial.text}</td>
                     <td className="px-6 py-4">
-                      <button
-                        onClick={() => handleEdit(index)}
-                        className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 mr-2"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDelete(index)}
-                        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
-                      >
-                        Delete
-                      </button>
+                      <div className="flex items-center space-x-2 mb-[0.5px]">
+                        <button
+                          onClick={() => handleEdit(index)}
+                          className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 w-[120px] text-center"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDelete(index)}
+                          className="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 w-[120px] text-center"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}

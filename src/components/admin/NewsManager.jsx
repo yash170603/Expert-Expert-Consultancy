@@ -84,15 +84,21 @@ const NewsManager = () => {
 
         {/* Right Section (Form and Table) */}
         <div className="flex-1 p-4">
-          <h1 className="text-3xl font-bold mb-6">NEET NEWS MANAGER</h1>
+        <div className="flex items-center justify-center h-[20px]">
+  <h1 className="text-3xl font-bold">NEET NEWS MANAGER</h1>
+</div>
+
 
           {/* Button to show/hide form */}
-          <button
-            onClick={() => setShowForm(!showForm)}
-            className="bg-blue-500 text-white px-6 py-3 rounded-lg mb-6 hover:bg-blue-600 transition-all"
-          >
-            {showForm ? "Cancel" : "Add New News"}
-          </button>
+          <div className="flex justify-end">
+  <button
+    onClick={() => setShowForm(!showForm)}
+    className="bg-blue-500 text-white px-6 py-3 rounded-lg mb-6 hover:bg-blue-600 transition-all"
+  >
+    {showForm ? "Cancel" : "Add New News"}
+  </button>
+</div>
+  
 
           {/* Add/Edit Form */}
           {showForm && (
@@ -168,18 +174,22 @@ const NewsManager = () => {
                     </td>
                     <td className="px-6 py-4">{news.caption}</td>
                     <td className="px-6 py-4">
-                      <button
-                        onClick={() => handleEdit(index)}
-                        className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 mr-2"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDelete(index)}
-                        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
-                      >
-                        Delete
-                      </button>
+                    <div className="flex items-center space-x-2 mb-[0.5px]">
+  <button
+    onClick={() => handleEdit(index)}
+    className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 w-[100px] text-center"
+  >
+    Edit
+  </button>
+  <button
+    onClick={() => handleDelete(index)}
+    className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 w-[100px] text-center"
+  >
+    Delete
+  </button>
+</div>
+
+
                     </td>
                   </tr>
                 ))}

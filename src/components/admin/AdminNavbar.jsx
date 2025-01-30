@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { NewspaperIcon, ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
+import { IoSchoolSharp ,IoPeople} from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
@@ -11,6 +12,8 @@ const AdminNavbar = () => {
   const menuItems = [
     { id: 'news', label: 'News', icon: NewspaperIcon, route: '/newsmanager' },
     { id: 'testimonials', label: 'Testimonials', icon: ChatBubbleBottomCenterTextIcon, route: '/testimonialmanager' },
+    { id: 'college', label: 'College', icon: IoSchoolSharp , route: '/collegemanager' },
+    { id: 'studentinfo', label: 'Student Information', icon: IoPeople , route: '/studentinfo' }
   ];
 
   const handleNavigation = (item) => {
