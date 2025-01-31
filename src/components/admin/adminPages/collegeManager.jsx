@@ -1,7 +1,5 @@
-"use client";
 
 import { useState } from "react";
-import AdminNavbar from "./AdminNavbar";
 
 const initialColleges = [
   { id: 1, name: "AIIMS Delhi", state: "Delhi", approxPercentile: "99.9%" },
@@ -61,10 +59,7 @@ const CollegeManager = () => {
     <div className="w-full h-screen">
       <div className="flex h-full">
         {/* Left Sidebar */}
-        <div className="w-1/6 bg-blue-950 text-white h-full p-4">
-          <AdminNavbar />
-        </div>
-
+   
         {/* Right Section */}
         <div className="flex-1 p-4">
           <h1 className="text-3xl font-bold text-center mb-6"> College Manager</h1>

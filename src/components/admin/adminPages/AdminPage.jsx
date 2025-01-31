@@ -18,7 +18,7 @@
 
 
 import React from "react"
-import AdminNavbar from "./AdminNavbar"
+
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
 import { PieChart, Pie, Cell } from "recharts"
 
@@ -43,7 +43,7 @@ const AdminPage = () => {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <AdminNavbar />
+    
       <main className="flex-1 p-8 bg-gradient-to-br from-slate-800 to-slate-900 overflow-auto">
         <h1 className="text-3xl font-bold text-white mb-6">NEET Consultancy Dashboard</h1>
 

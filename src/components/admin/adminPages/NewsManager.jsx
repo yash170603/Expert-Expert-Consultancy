@@ -1,8 +1,6 @@
-"use client";
+
 
 import { useState } from "react";
-import { Plus, Pencil } from "lucide-react";
-import AdminNavbar from "./AdminNavbar";
 
 const initialNews = [
   {
@@ -75,12 +73,9 @@ const NewsManager = () => {
   };
 
   return (
-    <div className="w-full h-screen">
+    <div className="w-full max-h-screen">
       <div className="flex h-full">
-        {/* Left Sidebar (Admin Navbar) */}
-        <div className="w-1/6 bg-blue-950 text-white h-full p-4">
-          <AdminNavbar />
-        </div>
+   
 
         {/* Right Section (Form and Table) */}
         <div className="flex-1 p-4">

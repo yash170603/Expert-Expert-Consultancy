@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { GraduationCap, BookOpen, Building2 } from "lucide-react"
+import { GraduationCap, BookOpen, LucideFileQuestion } from "lucide-react"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -25,16 +25,17 @@ const ServiceList = () => {
     {
       title: "UG Service List",
       icon: GraduationCap,
-      pdfUrl: "/EXPERT_NEET_UG_SERVICES_2024.pdf",
+      pdfUrl: "/newUGservices.pdf",
     },
     {
       title: "PG Service List",
       icon: BookOpen,
-      pdfUrl: "/EXPERT_NEET_PG_SERVICES_2024.pdf",
+      pdfUrl: "/newPGservices.pdf",
     },
     {
-      title: "MBBS College List",
-      icon: Building2,
+      title: "FAQ's",
+      icon: LucideFileQuestion,
+      pdfUrl: "/faq"
     },
   ]
 

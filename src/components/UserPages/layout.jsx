@@ -225,8 +225,8 @@ const Layout = () => {
         <div className="p-6">
           <Routes>
             <Route path="/" element={<UserDashboardHome />} />
-            <Route path="colleges" element={<Colleges />} />
-            <Route path="edit-profile" element={<UpdateProfile />} />
+            <Route path="/colleges" element={<Colleges />} />
+            <Route path="/edit-profile" element={<UpdateProfile />} />
           </Routes>
         </div>
       </main>
