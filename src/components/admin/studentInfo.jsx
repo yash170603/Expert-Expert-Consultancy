@@ -4,7 +4,7 @@ import { useState } from "react";
 import AdminNavbar from "./AdminNavbar";
 
 const students = [
-  { id: 1, name: "Aryan Sharma", dob: "2002-05-15", contact: "98888210", email: "aryan@example.com" },
+  { id: 1, name: "Aryan Sharma", dob: "2002-05-15", contact: "9882309210", email: "aryan@example.com" },
   { id: 2, name: "Priya Verma", dob: "2001-09-22", contact: "8765432109", email: "priya@example.com" },
   { id: 3, name: "Rahul Mehta", dob: "2003-12-05", contact: "7654321098", email: "rahul@example.com" },
 ];
