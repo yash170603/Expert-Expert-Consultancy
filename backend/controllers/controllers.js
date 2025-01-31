@@ -1,6 +1,7 @@
 let incomingData =[];
 
-  const getData =(req,res)=>{
+
+  export const getData =(req,res)=>{
 
     console.log("THe api was hit");
        res.send({
@@ -8,11 +9,14 @@ let incomingData =[];
               data:incomingData
        });
 }
-   const postData =(req,res)=>{
-    incomingData.push(req.body);
+   export const postData =(req,res)=>{
+    
+       incomingData.length=0;
+        incomingData.push(req.body);
+     
     res.send({
         message:"Data received successfully",
     });
 }
 
-modules.exports= {getData,postData};
+// module.exports= {getData,postData};

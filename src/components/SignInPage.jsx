@@ -2,18 +2,24 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import backgroundImage from "../assets/signInbackgroundimage.webp";
-
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const SignInPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
-
-  const onSubmit = (data) => {
+   const navigate = useNavigate();
+  const onSubmit = async (data) => {
     alert("Sign-In successful!"); // Placeholder action
-    console.log(data);
+    console.log(data);  
+    const response = await axios.post("http://localhost:3000/api/signIn", data);
+      if(response.status === 200){
+        console.log(response);
+        navigate("/dashboard");
   };
+}
 
   return (
     <div

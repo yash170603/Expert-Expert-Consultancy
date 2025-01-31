@@ -76,7 +76,7 @@ import SignupForm from "./SignUpPage";
 import NeetDetails from "./Neet.Details.Form";
 import AdditionalDetails from "./AdditionalDetails";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 import { useSignUp } from "./context/SignUpContext"; // Adjust the import path as necessary
@@ -86,6 +86,7 @@ import axios from "axios";
 const ScrollSignup = () => {
   const [submitting, isSubmitting] = useState(false);
   const { formData} = useSignUp(); // Access the context data
+  const navigate = useNavigate();
 
   const handleSubmit =  async  () => {
      try {
@@ -99,6 +100,13 @@ const ScrollSignup = () => {
           console.log(response);
           isSubmitting(false);
           console.log("button is clicked")
+             if( response.status === 200){
+                 navigate("/sign-in");
+             }else{
+                  toast.error("There was an  internal server error , Please try again later");
+                  window.location.reload();
+                  
+             }
 
 
      } catch (error) {

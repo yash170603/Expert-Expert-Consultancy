@@ -14,6 +14,7 @@ import AdminPage from "./components/admin/AdminPage.jsx"
 import AdminLogin from "./components/admin/AdminLogin.jsx"
 import TestimonialManager from "./components/admin/TestimonialManager"
 import NewsManager from "./components/admin//NewsManager"
+import Layout from "./components/UserPages/layout.jsx";
 
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="/admin-page" element={<AdminPage/>} />
           <Route path="/testimonialmanager" element={<TestimonialManager />} />
           <Route path="/newsmanager" element={<NewsManager />} />
+          <Route path="/dashboard/*" element={<Layout/>}/>
         </Routes>
       </BrowserRouter>
       </SignupProvider>
