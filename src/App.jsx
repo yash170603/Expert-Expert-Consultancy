@@ -13,10 +13,10 @@ import ServerFrontend from "./components/serverFrontend.jsx";
 import AdminPage from "./components/admin/AdminPage.jsx"
 import AdminLogin from "./components/admin/AdminLogin.jsx"
 import TestimonialManager from "./components/admin/TestimonialManager"
-import NewsManager from "./components/admin//NewsManager"
-import CollegeManager from "./components/admin//collegeManager.jsx"
-import  StudentManager from "./components/admin//studentInfo.jsx"
-
+import NewsManager from "./components/admin/NewsManager"
+import Layout from "./components/UserPages/layout.jsx";
+import CollegeManager from "./components/admin/collegeManager.jsx"
+import  StudentManager from "./components/admin/studentInfo.jsx"
 
 
 const App = () => {
@@ -42,6 +42,7 @@ const App = () => {
           <Route path="/admin-page" element={<AdminPage/>} />
           <Route path="/testimonialmanager" element={<TestimonialManager />} />
           <Route path="/newsmanager" element={<NewsManager />} />
+          <Route path="/dashboard/*" element={<Layout/>}/>
           <Route path="/collegemanager" element={<CollegeManager />} />
           <Route path="/studentinfo" element={< StudentManager />} />
         </Routes>
