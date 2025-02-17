@@ -1,9 +1,6 @@
-"use client";
 
-import { useState } from "react";
-import { Plus, Pencil } from "lucide-react";
-import AdminNavbar from "./AdminNavbar";
 
+import { useState } from "react"; 
 const initialTestimonials = [
   {
     name: "Dr. Priya Sharma",
@@ -106,9 +103,7 @@ const TestimonialManager = () => {
   return (
     <div className="w-full h-screen">
       <div className="flex h-full">
-        <div className="w-1/6 bg-blue-950 text-white h-full  p-4">
-          <AdminNavbar />
-        </div>
+     
 
         <div className="flex-1 p-4">
           <div className="flex items-center justify-center h-[20px]">

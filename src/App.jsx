@@ -10,13 +10,11 @@ import FAQ from "./components/FAQ.jsx";
 import ScrollSignup from "./components/scrollSignup.jsx";
 import { SignupProvider } from "./components/context/SignUpContext";
 import ServerFrontend from "./components/serverFrontend.jsx";
-import AdminPage from "./components/admin/AdminPage.jsx"
 import AdminLogin from "./components/admin/AdminLogin.jsx"
-import TestimonialManager from "./components/admin/TestimonialManager"
-import NewsManager from "./components/admin/NewsManager"
+import NewsManager from "./components/admin/adminPages/NewsManager.jsx"
 import Layout from "./components/UserPages/layout.jsx";
-import CollegeManager from "./components/admin/collegeManager.jsx"
-import  StudentManager from "./components/admin/studentInfo.jsx"
+import QuestionAnswers from "./components/QuestionAnswers.jsx"
+import AdminLayout from "./components/admin/layout.jsx";
 
 
 const App = () => {
@@ -39,12 +37,11 @@ const App = () => {
           <Route path="/refund-rule" element={<RefundRule />} />
           <Route path="/check" element={<ServerFrontend />} />
           <Route path="/admin" element={<AdminLogin/>} />
-          <Route path="/admin-page" element={<AdminPage/>} />
-          <Route path="/testimonialmanager" element={<TestimonialManager />} />
+          <Route path="/admin-page/*" element={<AdminLayout/>} />
           <Route path="/newsmanager" element={<NewsManager />} />
           <Route path="/dashboard/*" element={<Layout/>}/>
-          <Route path="/collegemanager" element={<CollegeManager />} />
-          <Route path="/studentinfo" element={< StudentManager />} />
+          
+          <Route path="/qna" element={<QuestionAnswers />} />
         </Routes>
       </BrowserRouter>
       </SignupProvider>

@@ -152,7 +152,8 @@ const Layout = () => {
 
   const handleSignout = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/auth/signout")
+     // const response = await axios.get("http://localhost:5000/api/auth/signout")
+     const respones= "heel"
       console.log(response)
     } catch (error) {
       console.log("This is the error at signout", error)
@@ -225,8 +226,8 @@ const Layout = () => {
         <div className="p-6">
           <Routes>
             <Route path="/" element={<UserDashboardHome />} />
-            <Route path="colleges" element={<Colleges />} />
-            <Route path="edit-profile" element={<UpdateProfile />} />
+            <Route path="/colleges" element={<Colleges />} />
+            <Route path="/edit-profile" element={<UpdateProfile />} />
           </Routes>
         </div>
       </main>

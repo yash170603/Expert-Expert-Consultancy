@@ -1,7 +1,4 @@
-"use client";
-
-import { useState } from "react";
-import AdminNavbar from "./AdminNavbar";
+import React from "react";
 
 const students = [
   { id: 1, name: "Aryan Sharma", dob: "2002-05-15", contact: "9882309210", email: "aryan@example.com" },
@@ -14,10 +11,7 @@ const StudentManager = () => {
     <div className="w-full h-screen">
       <div className="flex h-full">
         {/* Left Sidebar */}
-        <div className="w-1/6 bg-blue-950 text-white h-full p-4">
-          <AdminNavbar />
-        </div>
-
+      
         {/* Right Section (Student List) */}
         <div className="flex-1 p-4">
           <h1 className="text-3xl font-bold text-center mb-6">Student Information</h1>
