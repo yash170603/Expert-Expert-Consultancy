@@ -292,7 +292,7 @@ const UserDashboardHome = () => {
   const fetchData = async () => {
     try {
       setFetching(true)
-      const formData = await axios.get("http://localhost:3000/api/getData")
+      const formData = await axios.get("http://localhost:3001/api/getData")
       setThisForm(formData.data.data[0])
     } catch (error) {
       toast.error("There was an error fetching the data, please try again later")
