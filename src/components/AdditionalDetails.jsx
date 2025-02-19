@@ -1,18 +1,16 @@
-
-
-import React from "react"
-import { useSignUp } from "./context/SignUpContext"
-
+import React from "react";
+import { useSignUp } from "./context/SignupContext";
 const AdditionalDetails = () => {
-  const { formData, updateFormData } = useSignUp()
+  const { formData, updateFormData } = useSignUp();
 
-  const quotaOptions = ["None", "OBC", "SC", "ST", "EWS"]
+  const quotaOptions = ["None", "OBC", "SC", "ST", "EWS"];
 
   return (
     <div className="max-w-md mx-auto bg-white shadow-md rounded-xl px-8 pt-6 pb-8 mb-4">
-
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2">Disability:</label>
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Disability:
+        </label>
         <div className="mt-2">
           <label className="inline-flex items-center">
             <input
@@ -21,7 +19,9 @@ const AdditionalDetails = () => {
               name="disability"
               value="Yes"
               checked={formData.additionalDetails.disable === "Yes"}
-              onChange={() => updateFormData("additionalDetails", { disable: "Yes" })}
+              onChange={() =>
+                updateFormData("additionalDetails", { disable: "Yes" })
+              }
             />
             <span className="ml-2">Yes</span>
           </label>
@@ -32,7 +32,9 @@ const AdditionalDetails = () => {
               name="disability"
               value="No"
               checked={formData.additionalDetails.disable === "No"}
-              onChange={() => updateFormData("additionalDetails", { disable: "No" })}
+              onChange={() =>
+                updateFormData("additionalDetails", { disable: "No" })
+              }
             />
             <span className="ml-2">No</span>
           </label>
@@ -40,14 +42,19 @@ const AdditionalDetails = () => {
       </div>
 
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="quota">
+        <label
+          className="block text-gray-700 text-sm font-bold mb-2"
+          htmlFor="quota"
+        >
           Quota:
         </label>
         <select
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="quota"
           value={formData.additionalDetails.quota}
-          onChange={(e) => updateFormData("additionalDetails", { quota: e.target.value })}
+          onChange={(e) =>
+            updateFormData("additionalDetails", { quota: e.target.value })
+          }
         >
           {quotaOptions.map((quota) => (
             <option key={quota} value={quota}>
@@ -58,7 +65,10 @@ const AdditionalDetails = () => {
       </div>
 
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="annualFeeBudget">
+        <label
+          className="block text-gray-700 text-sm font-bold mb-2"
+          htmlFor="annualFeeBudget"
+        >
           Annual Fee Budget:
         </label>
         <input
@@ -66,25 +76,39 @@ const AdditionalDetails = () => {
           id="annualFeeBudget"
           type="number"
           value={formData.additionalDetails.annualFeeBudget}
-          onChange={(e) => updateFormData("additionalDetails", { annualFeeBudget: e.target.value })}
+          onChange={(e) =>
+            updateFormData("additionalDetails", {
+              annualFeeBudget: e.target.value,
+            })
+          }
         />
       </div>
 
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fatherOccupation">
+        <label
+          className="block text-gray-700 text-sm font-bold mb-2"
+          htmlFor="fatherOccupation"
+        >
           Father's Occupation:
         </label>
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="fatherOccupation"
           type="text"
-          value={formData.additionalDetails.fatherOccuptaion}
-          onChange={(e) => updateFormData("additionalDetails", { fatherOccuptaion: e.target.value })}
+          value={formData.additionalDetails.fatherOccupation} // ✅ Fixed Typo
+          onChange={(e) =>
+            updateFormData("additionalDetails", {
+              fatherOccupation: e.target.value,
+            })
+          } // ✅ Fixed Typo
         />
       </div>
 
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="motherOccupation">
+        <label
+          className="block text-gray-700 text-sm font-bold mb-2"
+          htmlFor="motherOccupation"
+        >
           Mother's Occupation:
         </label>
         <input
@@ -92,12 +116,15 @@ const AdditionalDetails = () => {
           id="motherOccupation"
           type="text"
           value={formData.additionalDetails.motherOccupation}
-          onChange={(e) => updateFormData("additionalDetails", { motherOccupation: e.target.value })}
+          onChange={(e) =>
+            updateFormData("additionalDetails", {
+              motherOccupation: e.target.value,
+            })
+          }
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdditionalDetails
-
+export default AdditionalDetails;

@@ -7,11 +7,27 @@ const SignupContext = createContext();
 export const SignupProvider = ({ children }) => {
   // Store all form data in a single state
   const [formData, setFormData] = useState({
-    personalDetails: { firstName: "",lastName:"", email: "", phone: "",password:"" },
-    neetDetails: { score: "", rank: "", category: "",course:"",domicle:"" }, // course and doicile are select tags, with course ->
-    //const courseOptions = ["None", "MBBS", "BAMS", "BHMS", "BDS"];, and domicile all indian states
-    
-    additionalDetails: { disable:"",quota:"",annualFeeBudget:"",motherOccupation:"",fatherOccuptaion:""},// quota ia a select tag too, and options are -> const quotaOptions = ["None", "OBC", "SC", "ST", "EWS"]; and disablity is a radio button
+    personalDetails: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      password: "",
+    },
+    neetDetails: {
+      score: "",
+      rank: "",
+      category: "",
+      course: "",
+      domicile: "",
+    },
+    additionalDetails: {
+      disable: "",
+      quota: "",
+      annualFeeBudget: "",
+      motherOccupation: "",
+      fatherOccupation: "",
+    },
   });
 
   // Function to update only specific parts of the form data
@@ -21,6 +37,9 @@ export const SignupProvider = ({ children }) => {
       [section]: { ...prev[section], ...data },
     }));
   };
+
+  console.log("✅ SignupProvider is rendering!");
+  console.log("🔹 Current Form Data:", formData);
 
   return (
     <SignupContext.Provider value={{ formData, updateFormData }}>
@@ -33,7 +52,7 @@ export const SignupProvider = ({ children }) => {
 export const useSignUp = () => {
   const context = useContext(SignupContext);
   if (!context) {
-    throw new Error("useSignup must be used within a SignupProvider");
+    throw new Error("useSignUp must be used within a SignupProvider");
   }
   return context;
 };
