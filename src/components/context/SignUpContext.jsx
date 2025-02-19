@@ -3,18 +3,34 @@ import React, { createContext, useState, useContext } from "react";
 // Create the context to store form data
 const SignupContext = createContext();
 
-// This is the provider component, which will wrap around all the forms
+// Provider component to wrap around all forms
 export const SignupProvider = ({ children }) => {
   // Store all form data in a single state
   const [formData, setFormData] = useState({
-    personalDetails: { firstName: "",lastName:"", email: "", phone: "",password:"" },
-    neetDetails: { score: "", rank: "", category: "",course:"",domicle:"" }, // course and doicile are select tags, with course ->
-    //const courseOptions = ["None", "MBBS", "BAMS", "BHMS", "BDS"];, and domicile all indian states
-    
-    additionalDetails: { disable:"",quota:"",annualFeeBudget:"",motherOccupation:"",fatherOccuptaion:""},// quota ia a select tag too, and options are -> const quotaOptions = ["None", "OBC", "SC", "ST", "EWS"]; and disablity is a radio button
+    personalDetails: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      password: "",
+    },
+    neetDetails: {
+      score: "",
+      rank: "",
+      category: "",
+      course: "", // Dropdown: ["None", "MBBS", "BAMS", "BHMS", "BDS"]
+      domicile: "", // Dropdown: All Indian states
+    },
+    additionalDetails: {
+      disability: "", // Radio: "Yes" or "No"
+      quota: "", // Dropdown: ["None", "OBC", "SC", "ST", "EWS"]
+      annualFeeBudget: "",
+      motherOccupation: "",
+      fatherOccupation: "", // Fixed typo
+    },
   });
 
-  // Function to update only specific parts of the form data
+  // Function to update specific sections of the form
   const updateFormData = (section, data) => {
     setFormData((prev) => ({
       ...prev,
@@ -33,7 +49,7 @@ export const SignupProvider = ({ children }) => {
 export const useSignUp = () => {
   const context = useContext(SignupContext);
   if (!context) {
-    throw new Error("useSignup must be used within a SignupProvider");
+    throw new Error("useSignUp must be used within a SignupProvider");
   }
   return context;
 };

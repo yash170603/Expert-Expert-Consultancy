@@ -1,19 +1,32 @@
-// const express = require('express');
-//const cors = require('cors');
-import express from 'express';
-import cors from 'cors';
-import router  from './routes/route.js';
-
+import "dotenv/config"; // Load environment variables
+import express from "express";
+import cors from "cors";
+import router from "./routes/route.js";
+import { dbconnect } from "./db/dbconnect.js";
 
 const app = express();
+
+// Middleware setup
 app.use(express.json());
 app.use(cors());
-const port = 3001
-const handler = router;
 
+const port = process.env.PORT || 3000;
 
-app.use('/api', handler)
+// Connect to database before starting server
+dbconnect()
+  .then(() => {
+    console.log("✅ Database Connected Successfully");
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+    // Start the server after DB connection is confirmed
+    app.listen(port, () => {
+      console.log(`🚀 Server running at http://localhost:${port}`);
+    });
+
+  })
+  .catch((err) => {
+    console.error("❌ Database Connection Failed:", err);
+    process.exit(1); // Exit process if DB fails
+  });
+
+// API Routes
+app.use("/api", router);
