@@ -4,23 +4,20 @@
 // // import toast from "react-hot-toast";
 // // const UserDashboardHome = () => {
 
-     
 // //     const[isfetching,setFetching]=useState(false);
-    
+
 // //   const [ thisForm, setThisForm ] = useState(null)
-      
 
 // //     const fetchData = async () => {
 
 // //          try {
 // //           setFetching(true);
-                          
+
 // //           const formData = await axios.get("http://localhost:3000/api/getData");
-          
+
 // //           setThisForm(formData.data.data[0]);
 // //           console.log('this is the thisForm fetched line 57', formData.data.data[0])
 
-          
 // //          } catch (error) {
 // //              toast.error("There was an error fetching the data, please try again later");
 
@@ -31,7 +28,6 @@
 // //          }
 // //     }
 
-     
 // //   const containerVariants = {
 // //     hidden: { opacity: 0 },
 // //     visible: {
@@ -49,7 +45,7 @@
 // //     },
 // //   }
 
-// //   return (  
+// //   return (
 // //     <motion.div
 // //       className="max-w-full mx-auto p-4 h-full space-y-6 bg-yellow-600"
 // //       initial="hidden"
@@ -127,8 +123,6 @@
 
 // // export default UserDashboardHome
 
-
-
 // import { motion } from "framer-motion"
 // import neet from "../../../assets/neet.jpg"
 // import { useEffect, useState } from "react"
@@ -193,8 +187,7 @@
 //         { label: "Course", value: thisForm?.neetDetails?.course },
 //         { label: "Category", value: thisForm?.neetDetails?.category },
 //         { label: "Quota", value: thisForm?.additionalDetails?.quota },
-       
-      
+
 //       ],
 //     },
 //     {
@@ -221,7 +214,7 @@
 //       items: [
 //         { label: "Email", value: thisForm?.personalDetails?.email},
 //         { label: "Phone Number", value: thisForm?.personalDetails?.phone },
-        
+
 //       ],
 //     },
 //   ]
@@ -276,35 +269,35 @@
 
 // export default UserDashboardHome
 
-
-
-import { motion } from "framer-motion"
-import neet from "../../../assets/neet.jpg"
-import { useEffect, useState } from "react"
-import toast from "react-hot-toast"
-import axios from "axios"
-import { Loader2 } from 'lucide-react'
+import { motion } from "framer-motion";
+import neet from "../../../assets/neet.jpg";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { Loader2 } from "lucide-react";
 
 const UserDashboardHome = () => {
-  const [isfetching, setFetching] = useState(false)
-  const [thisForm, setThisForm] = useState(null)
+  const [isfetching, setFetching] = useState(false);
+  const [thisForm, setThisForm] = useState(null);
 
   const fetchData = async () => {
     try {
-      setFetching(true)
-      const formData = await axios.get("http://localhost:3001/api/getData")
-      setThisForm(formData.data.data[0])
+      setFetching(true);
+      const formData = await axios.get("http://localhost:3000/api/getData");
+      setThisForm(formData.data.data[0]);
     } catch (error) {
-      toast.error("There was an error fetching the data, please try again later")
-      window.location.reload()
+      toast.error(
+        "There was an error fetching the data, please try again later"
+      );
+      window.location.reload();
     } finally {
-      setFetching(false)
+      setFetching(false);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -312,7 +305,7 @@ const UserDashboardHome = () => {
       opacity: 1,
       transition: { staggerChildren: 0.1 },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -321,14 +314,14 @@ const UserDashboardHome = () => {
       opacity: 1,
       transition: { type: "spring", stiffness: 100 },
     },
-  }
+  };
 
   if (isfetching) {
     return (
       <div className="flex items-center justify-center h-[80vh]">
         <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
       </div>
-    )
+    );
   }
 
   const sections = [
@@ -350,32 +343,41 @@ const UserDashboardHome = () => {
         { label: "AIR Rank", value: thisForm?.neetDetails?.rank },
         { label: "AIR Category Rank", value: thisForm?.neetDetails?.category },
         { label: "NEET Score", value: thisForm?.neetDetails?.score },
-        { label: "Fee Budget", value: thisForm?.additionalDetails?.annualFeeBudget },
+        {
+          label: "Fee Budget",
+          value: thisForm?.additionalDetails?.annualFeeBudget,
+        },
       ],
     },
     {
       title: "Parents Details",
       icon: "👨‍👩‍👦",
       items: [
-        { label: "Father's Occupation", value: thisForm?.additionalDetails?.fatherOccuptaion },
-        { label: "Mother's Occupation", value: thisForm?.additionalDetails?.motherOccupation },
+        {
+          label: "Father's Occupation",
+          value: thisForm?.additionalDetails?.fatherOccuptaion,
+        },
+        {
+          label: "Mother's Occupation",
+          value: thisForm?.additionalDetails?.motherOccupation,
+        },
       ],
     },
     {
       title: "Contact Details",
       icon: "📞",
       items: [
-        { label: "Email", value: thisForm?.personalDetails?.email},
+        { label: "Email", value: thisForm?.personalDetails?.email },
         { label: "Phone Number", value: thisForm?.personalDetails?.phone },
       ],
     },
-  ]
+  ];
 
   return (
-    <motion.div 
-      className="max-h-screen  p-4 flex flex-col gap-6" 
-      initial="hidden" 
-      animate="visible" 
+    <motion.div
+      className="max-h-screen  p-4 flex flex-col gap-6"
+      initial="hidden"
+      animate="visible"
       variants={containerVariants}
     >
       <motion.div
@@ -401,8 +403,8 @@ const UserDashboardHome = () => {
         </div>
       </motion.div>
 
-      <motion.div 
-        variants={itemVariants} 
+      <motion.div
+        variants={itemVariants}
         className="grid grid-cols-2 flex-1 gap-4"
       >
         {sections.map((section, index) => (
@@ -425,7 +427,9 @@ const UserDashboardHome = () => {
                   className="flex justify-between items-center text-sm"
                 >
                   <p className="text-gray-600">{item.label}</p>
-                  <p className="font-medium text-gray-900">{item.value || '-'}</p>
+                  <p className="font-medium text-gray-900">
+                    {item.value || "-"}
+                  </p>
                 </div>
               ))}
             </div>
@@ -433,7 +437,7 @@ const UserDashboardHome = () => {
         ))}
       </motion.div>
     </motion.div>
-  )
-}
+  );
+};
 
-export default UserDashboardHome
+export default UserDashboardHome;
