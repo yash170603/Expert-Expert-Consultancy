@@ -12,7 +12,8 @@ const SignInPage = () => {
   } = useForm();
    const navigate = useNavigate();
   const onSubmit = async (data) => {
-    alert("Sign-In successful!"); // Placeholder action
+     alert("Sign-In successful!"); // Placeholder action
+
     console.log(data);  
     const response = await axios.post("http://localhost:3000/api/signIn", data);
       if(response.status === 200){

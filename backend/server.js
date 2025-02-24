@@ -2,6 +2,7 @@ import "dotenv/config"; // Load environment variables
 import express from "express";
 import cors from "cors";
 import router from "./routes/route.js";
+import adminRoutes from "./routes/adminRoute.js"; // Import admin routes
 import { dbconnect } from "./db/dbconnect.js";
 
 const app = express();
@@ -20,6 +21,7 @@ dbconnect()
     // Start the server after DB connection is confirmed
     app.listen(port, () => {
       console.log(`🚀 Server running at http://localhost:${port}`);
+      console.log("📌 Routes Initialized: /api/, /api/admin");
     });
 
   })
@@ -29,4 +31,5 @@ dbconnect()
   });
 
 // API Routes
-app.use("/api", router);
+app.use("/api/", router);
+app.use("/api/admin", adminRoutes);

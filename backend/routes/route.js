@@ -16,7 +16,8 @@
 
 // export default router;
 import express from "express";
-import { getData, postData } from "../controllers/controllers.js";
+import {getData,postData} from "../controllers/signUpControllers.js"
+
 
 const router = express.Router();
 
