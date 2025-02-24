@@ -15,6 +15,7 @@ import NewsManager from "./components/admin/adminPages/NewsManager.jsx"
 import Layout from "./components/UserPages/layout.jsx";
 import QuestionAnswers from "./components/QuestionAnswers.jsx"
 import AdminLayout from "./components/admin/layout.jsx";
+import toast,{Toaster} from 'react-hot-toast'
 
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
     <div>
       <SignupProvider>
       <BrowserRouter>
+      <Toaster/>
         <Routes>
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/" element={<NeetPG />} />   {/* Home page */}

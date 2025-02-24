@@ -43,9 +43,10 @@ const ScrollSignup = () => {
       );
 
       if (response.status === 201) {
-        // ✅ Change from 200 to 201
         toast.success("✅ Signed up successfully!");
-        navigate("/sign-in");
+        setTimeout(() => {
+          navigate("/sign-in");
+        }, 2000); 
       } else {
         toast.error("⚠️ Unexpected response. Please try again later.");
       }
@@ -64,8 +65,9 @@ const ScrollSignup = () => {
   ];
 
   return (
+     
     <div className="h-screen w-full bg-blue-950">
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster  />
       <Timeline data={data} />
       <div className="flex flex-col items-center justify-between bg-blue-950 mb-2">
         <button
