@@ -1,35 +1,44 @@
-import "dotenv/config"; // Load environment variables
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import router from "./routes/route.js";
-import adminRoutes from "./routes/adminRoute.js"; // Import admin routes
+import path from "path";
+import { fileURLToPath } from "url"; // ✅ Required for __dirname in ES Modules
 import { dbconnect } from "./db/dbconnect.js";
+import router from "./routes/route.js";
+import adminRoutes from "./routes/adminRoute.js";
 
 const app = express();
+const port = process.env.PORT || 3000;
 
-// Middleware setup
+// ✅ Fix __dirname for ES module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// ✅ Define the correct static folder path
+const testimonialPath = path.join(__dirname, "assets/testimonial");
+
+//console.log("🔍 Serving static files from:", testimonialPath); // Debugging log
+
+// ✅ Middleware setup
 app.use(express.json());
 app.use(cors());
 
-const port = process.env.PORT || 3000;
+// ✅ Serve static images correctly
+app.use("/assets/testimonial", express.static(testimonialPath));
 
-// Connect to database before starting server
+// ✅ Connect to database before starting the server
 dbconnect()
   .then(() => {
     console.log("✅ Database Connected Successfully");
 
-    // Start the server after DB connection is confirmed
+    app.use("/api", router);
+    app.use("/api/admin", adminRoutes);
+
     app.listen(port, () => {
       console.log(`🚀 Server running at http://localhost:${port}`);
-      console.log("📌 Routes Initialized: /api/, /api/admin");
     });
-
   })
   .catch((err) => {
     console.error("❌ Database Connection Failed:", err);
-    process.exit(1); // Exit process if DB fails
+    process.exit(1);
   });
-
-// API Routes
-app.use("/api/", router);
-app.use("/api/admin", adminRoutes);

@@ -23,8 +23,12 @@ export const addNews = async (req, res) => {
 export const getAllNews = async (req, res) => {
   try {
     const newsList = await News.find().sort({ createdAt: -1 });
+
+    
+
     res.status(200).json({ news: newsList });
   } catch (error) {
+    console.error("❌ Error fetching news:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
