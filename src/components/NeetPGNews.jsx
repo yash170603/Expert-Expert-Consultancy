@@ -11,19 +11,27 @@ export const NEETPGNews = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // Fetch News from Database
+  // ✅ Fetch News from Database
   useEffect(() => {
     const fetchNews = async () => {
       try {
         const response = await axios.get(
           "http://localhost:3000/api/admin/news/all"
         );
-        setNewsList(
-          response.data.news.filter((news) => news.category === "Neet PG")
-        );
+
+        if (response.data && response.data.news) {
+          // 🔹 Filter news related to "NEET PG"
+          const filteredNews = response.data.news.filter(
+            (news) => news.category && news.category.toLowerCase() === "neet pg"
+          );
+
+          setNewsList(filteredNews);
+        } else {
+          setError("Invalid API response format.");
+        }
+
         setLoading(false);
       } catch (err) {
-        console.error("Error fetching news:", err);
         setError("Failed to load news. Please try again later.");
         setLoading(false);
       }
