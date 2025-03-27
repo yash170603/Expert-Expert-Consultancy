@@ -18,7 +18,7 @@ const NewsManager = () => {
     const loadNews = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/admin/news/all"
+          "http://localhost:3001/api/admin/news/all",{withCredentials:true}
         );
         setNewsList(response.data.news);
       } catch (error) {
@@ -34,8 +34,8 @@ const NewsManager = () => {
     try {
       if (isEditing) {
         await axios.put(
-          `http://localhost:3000/api/admin/news/${editId}`,
-          currentNews
+          `http://localhost:3001/api/admin/news/${editId}`,
+          currentNews,{withCredentials:true}
         );
         setNewsList((prev) =>
           prev.map((news) =>
@@ -44,8 +44,8 @@ const NewsManager = () => {
         );
       } else {
         const response = await axios.post(
-          "http://localhost:3000/api/admin/news/add",
-          currentNews
+          "http://localhost:3001/api/admin/news/add",
+          currentNews,{withCredentials:true}
         );
         setNewsList([response.data.news, ...newsList]); // Add new news to the top
       }
@@ -62,7 +62,7 @@ const NewsManager = () => {
   // ✅ Delete News
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/admin/news/${id}`);
+      await axios.delete(`http://localhost:3001/api/admin/news/${id}`,{withCredentials:true});
       setNewsList((prev) => prev.filter((news) => news._id !== id));
     } catch (error) {
       console.error("Error deleting news:", error);

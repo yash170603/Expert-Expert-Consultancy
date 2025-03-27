@@ -17,7 +17,8 @@ const SignInPage = () => {
     console.log("Data submitted while signining in ", data);
     try {
     
-      const response = await apiClient.post("/auth/login", data);
+      //const response = await apiClient.post("/auth/login", data);
+      const response = await axios.post("http://localhost:3001/api/auth/login",data,{withCredentials:true});
       if (response.status === 200) {
         alert("Sign-In successful!");
         console.log(response);

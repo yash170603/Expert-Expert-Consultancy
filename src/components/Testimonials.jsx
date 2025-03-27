@@ -24,7 +24,7 @@ const Testimonials = () => {
     const fetchTestimonials = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/admin/testimonials"
+          "http://localhost:3001/api/admin/testimonials",{withCredentials:true}
         );
 
         if (Array.isArray(response.data)) {

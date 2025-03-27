@@ -19,7 +19,7 @@ const TestimonialManager = () => {
     const loadTestimonials = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/admin/testimonials"
+          "http://localhost:3001/api/admin/testimonials",{withCredentials:true}
         );
         setTestimonialList(response.data);
       } catch (error) {
@@ -54,9 +54,9 @@ const TestimonialManager = () => {
 
       if (isEditing) {
         await axios.put(
-          `http://localhost:3000/api/admin/testimonials/${editId}`,
+          `http://localhost:3001/api/admin/testimonials/${editId}`,
           formData,
-          { headers: { "Content-Type": "multipart/form-data" } }
+          { withCredentials:true }
         );
         setTestimonialList((prev) =>
           prev.map((t) =>
@@ -65,13 +65,15 @@ const TestimonialManager = () => {
               : t
           )
         );
+        window.location.reload();
       } else {
         const response = await axios.post(
-          "http://localhost:3000/api/admin/testimonials",
+          "http://localhost:3001/api/admin/testimonials",
           formData,
-          { headers: { "Content-Type": "multipart/form-data" } }
+          { withCredentials:true } 
         );
         setTestimonialList([response.data, ...testimonialList]);
+        window.location.reload();
       }
 
       setCurrentTestimonial({
@@ -92,7 +94,7 @@ const TestimonialManager = () => {
   // ✅ Delete Testimonial
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/api/admin/testimonials/${id}`);
+      await axios.delete(`http://localhost:3001/api/admin/testimonials/${id}`,{withCredentials:true});
       setTestimonialList((prev) => prev.filter((t) => t._id !== id));
     } catch (error) {
       console.error("Error deleting testimonial:", error);
@@ -226,7 +228,7 @@ const TestimonialManager = () => {
                 <tr key={testimonial._id} className="border-t">
                   <td className="px-6 py-4">
                     <img
-                      src={`http://localhost:3000/assets/testimonial/${testimonial.image
+                      src={`http://localhost:3001/assets/testimonial/${testimonial.image
                         .split("/")
                         .pop()}`}
                       className="w-20 h-20 object-cover rounded-lg"

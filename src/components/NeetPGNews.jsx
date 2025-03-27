@@ -16,16 +16,16 @@ export const NEETPGNews = () => {
     const fetchNews = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/admin/news/all"
+          "http://localhost:3001/api/admin/news/all",{withCredentials:true}
         );
 
         if (response.data && response.data.news) {
           // 🔹 Filter news related to "NEET PG"
-          const filteredNews = response.data.news.filter(
-            (news) => news.category && news.category.toLowerCase() === "neet pg"
-          );
+          // const filteredNews = response.data.news.filter(
+          //   (news) => news.category && news.category.toLowerCase() === "neet ug"
+          // );
 
-          setNewsList(filteredNews);
+          setNewsList(response.data.news);
         } else {
           setError("Invalid API response format.");
         }
@@ -42,7 +42,7 @@ export const NEETPGNews = () => {
 
   return (
     <div className="relative w-full h-auto bg-blue-950 flex flex-col justify-center items-center overflow-hidden">
-      <h2 className="text-2xl font-bold text-yellow-400 mb-4">NEET PG News</h2>
+      <h2 className="text-2xl font-bold text-yellow-400 mb-4">Latest NEET News</h2>
 
       {loading ? (
         <p className="text-white">Loading news...</p>
