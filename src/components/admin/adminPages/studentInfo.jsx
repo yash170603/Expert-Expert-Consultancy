@@ -10,7 +10,7 @@ const StudentManager = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/getData") // ✅ Backend runs on 3000
+      .get("http://localhost:3001/api/user/getStudents",{withCredentials:true}) // ✅ Backend runs on 3000
       .then((response) => {
         setStudents(response.data.data); // ✅ Ensure correct key
         setFilteredStudents(response.data.data); // Initially, show all students

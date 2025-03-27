@@ -63,3 +63,26 @@ export const updateUser= async (req,res) =>{
            res.status(500).json({message:"Internal server error"})
    }
 }
+
+export const getAllStudents = async (req,res)=>{
+        try {
+               const students = await User.find();
+                if(students.length === 0){
+                  return res.status(404).json({message:"No students found"})
+                }
+
+                const studentsWithoutPassword = students.map((student) => {
+                  const studentObject = student.toObject();
+                  delete studentObject.password;
+                  return studentObject;
+                });
+                res.status(200).json({
+                  message:"Students fetched successfully",
+                  data:studentsWithoutPassword
+                })
+
+        } catch (error) {
+          console.log("this is error at fetching all students",error)
+          res.status(500).json({message:"Internal server error"})
+        }
+}
