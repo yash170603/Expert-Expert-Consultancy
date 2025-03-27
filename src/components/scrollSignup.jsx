@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 import { useSignUp } from "./context/SignUpContext"; // ✅ Ensure correct import path
-import toast, { Toaster } from "react-hot-toast";
-import axios from "axios";
+import toast, { Toaster } from "react-hot-toast"; 
+import { apiClient } from "../lib/axios.config";
 
 const ScrollSignup = () => {
   const [submitting, setSubmitting] = useState(false);
@@ -37,24 +37,45 @@ const ScrollSignup = () => {
         return;
       }
 
-      const response = await axios.post(
-        "http://localhost:3000/api/postData",
+      // const response = await apiClient.post(
+      //   "/auth/signup",
+      //   cleanedData
+      // );
+      const response = await apiClient.post(
+        "/auth/signup", //http://localhost:3001
         cleanedData
       );
+      console.log("🚀 Server Response:", response);
 
       if (response.status === 201) {
         toast.success("✅ Signed up successfully!");
         setTimeout(() => {
           navigate("/sign-in");
-        }, 2000); 
+        }, 2000);
       } else {
         toast.error("⚠️ Unexpected response. Please try again later.");
       }
     } catch (error) {
-      console.error("❌ Error submitting form:", error);
-      toast.error("❌ An error occurred while signing up. Please try again.");
+      if (error.response) {
+        // Server ne response diya, lekin error ke saath
+        if (error.response.status === 400) {
+          toast(
+           `Error: ${error.response?.data?.message || "Unknown error"}`
+          );
+        } else if (error.response.status === 500) {
+          //toast(` ❌ Internal server error, please try again later`);
+          toast(`Error: ${error.response.data?.error || "Unknown error"}`);
+        }
+      } else if (error.request) {
+        // Request gayi thi, par server ne koi response nahi diya
+        toast(" ❌ No response from server, check your internet connection.");
+      } else {
+        // Koi aur error (jaise ki syntax error, wrong API call)
+        toast(` ❌ Error: ${error.message}`);
+      }
+      console.error("Signup Error:", error);
     } finally {
-      setSubmitting(false);
+      setSubmitting(false);  
     }
   };
 
@@ -65,9 +86,8 @@ const ScrollSignup = () => {
   ];
 
   return (
-     
     <div className="h-screen w-full bg-blue-950">
-      <Toaster  />
+      <Toaster />
       <Timeline data={data} />
       <div className="flex flex-col items-center justify-between bg-blue-950 mb-2">
         <button

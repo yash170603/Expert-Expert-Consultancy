@@ -3,24 +3,39 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import backgroundImage from "../assets/signInbackgroundimage.webp";
 import axios from "axios";
+import { apiClient } from "../lib/axios.config";
 import { useNavigate } from "react-router-dom";
 const SignInPage = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm();
-   const navigate = useNavigate();
-  const onSubmit = async (data) => {
-     alert("Sign-In successful!"); // Placeholder action
 
-    console.log(data);  
-    const response = await axios.post("http://localhost:3000/api/signIn", data);
-      if(response.status === 200){
+
+
+  const {register,handleSubmit,formState: { errors },} = useForm();
+  const navigate = useNavigate();
+          
+  const onSubmit = async (data) => {
+    // Placeholder action
+    console.log("Data submitted while signining in ", data);
+    try {
+    
+      const response = await apiClient.post("/auth/login", data);
+      if (response.status === 200) {
+        alert("Sign-In successful!");
         console.log(response);
         navigate("/dashboard");
+      }  
+    } catch (error) {
+             console.log("This is the error caught while login",error)
+                if( error.status === 400){
+                    alert("Login failed, Invalid Credentials")
+                }
+                else if(error.status === 500){ 
+                    alert("Internal server error , pLease try again sometime later ")
+                }
+    }
+    
   };
-}
+
+  
 
   return (
     <div
@@ -49,9 +64,9 @@ const SignInPage = () => {
               id="email"
               type="email"
               placeholder="Email"
-              {...register("email", { 
+              {...register("email", {
                 required: true,
-                pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i 
+                pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
               })}
             />
             {errors.email && (

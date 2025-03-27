@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema(
       ],
     },
 
-    // ✅ Phone number validation (Only 10-digit numbers allowed)
+    // // ✅ Phone number validation (Only 10-digit numbers allowed)
     phone: {
       type: String,
       required: true,
@@ -48,7 +48,8 @@ const UserSchema = new mongoose.Schema(
     preferredCourse: { type: String, required: true, trim: true },
     domicileState: { type: String, required: true, trim: true },
 
-    disabilityQuota: { type: String, required: true, trim: true },
+    disable: { type: String, required: true, trim: true },
+    quota: { type: String, required: true, trim: true },
 
     // ✅ Fee Budget validation (Must be positive)
     feeBudget: {

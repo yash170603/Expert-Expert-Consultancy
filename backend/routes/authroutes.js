@@ -16,13 +16,14 @@
 
 // export default router;
 import express from "express";
-import {getData,postData} from "../controllers/signUpControllers.js"
+import { register,logIn, logOut } from "../controllers/authControllers.js";
 
 
-const router = express.Router();
+const authrouter = express.Router();
 
 // Define Routes
-router.get("/getData", getData);
-router.post("/postData", postData);
+authrouter.post("/signup", register);
+authrouter.post("/login", logIn);
+authrouter.get("/logout",logOut);
 
-export default router;
+export default authrouter;

@@ -22,7 +22,7 @@ export const SignupProvider = ({ children }) => {
       domicile: "", // Dropdown: All Indian states
     },
     additionalDetails: {
-      disability: "", // Radio: "Yes" or "No"
+      disable: "", // Radio: "Yes" or "No"
       quota: "", // Dropdown: ["None", "OBC", "SC", "ST", "EWS"]
       annualFeeBudget: "",
       motherOccupation: "",

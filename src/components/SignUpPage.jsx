@@ -1,5 +1,6 @@
 import React from "react";
 import { useSignUp } from "./context/SignUpContext";
+import toast from "react-hot-toast";
 
 const SignupForm = () => {
   const { formData, updateFormData } = useSignUp();
@@ -98,17 +99,38 @@ const SignupForm = () => {
         >
           Password:
         </label>
-        <input
+        {/* <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
           id="password"
           name="password"
           type="password"
+          minLength={8}
           value={formData.personalDetails.password}
           onChange={(e) =>
             updateFormData("personalDetails", { password: e.target.value })
           }
           required
-        />
+        /> */}
+        <input
+  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+  id="password"
+  name="password"
+  type="password"
+  minLength={8}
+  value={formData.personalDetails.password}
+  onChange={(e) => {
+    const newPassword = e.target.value;
+
+    // Update state
+    updateFormData("personalDetails", { password: newPassword });
+
+    // Check length and show toast
+    if (newPassword.length < 8) {
+      toast.warning("⚠️ Password must be at least 8 characters long!");
+    }
+  }}
+  required
+/>
       </div>
     </div>
   );
