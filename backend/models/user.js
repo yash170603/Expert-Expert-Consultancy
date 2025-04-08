@@ -18,6 +18,14 @@ const UserSchema = new mongoose.Schema(
       ],
     },
 
+    otp:{
+       type:String,required:true,trim:true
+    },
+    isVerified:{
+      type: Boolean,
+      default: false,
+    },
+
     // // ✅ Phone number validation (Only 10-digit numbers allowed)
     phone: {
       type: String,

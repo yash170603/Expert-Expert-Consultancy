@@ -3,6 +3,7 @@ import User from "../models/user.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+import sendVerificationEmail from "../../src/lib/email/api.js"
 
 
 // register user Data - Store User Data
@@ -46,12 +47,15 @@ export const register = async (req, res) => {
     // Hash password before storing
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(personalDetails.password, salt);
+    const thisotp = Math.floor(1000+Math.random()*9000).toString();
 
     // Store in DB
     const newUser = await User.create({
       firstName: personalDetails.firstName,
       lastName: personalDetails.lastName,
       email: personalDetails.email,
+      otp: thisotp,
+      isVerified: false,
       phone: personalDetails.phone,
       password: hashedPassword,
       neetScore: neetDetails.score,
@@ -67,6 +71,10 @@ export const register = async (req, res) => {
     });
 
     console.log(" User stored  in DB:", newUser);
+     
+        //sending email here.      to(email),firstname of user, otp in db
+        const sendEmail = await sendVerificationEmail( personalDetails.email,personalDetails.firstName,thisotp)
+        console.log("this is the sendEmail response ",sendEmail)
 
     res.status(201).json({ message: " User Registered  successfully", }); // user: newUser  -> not adding this now inside respone, might add later if needed
   } catch (error) {
@@ -119,4 +127,60 @@ export const logIn = async (req, res) => {
 export const logOut = async (req, res) => {
   res.clearCookie("token");
   res.status(200).json({ message: "User Logged Out successfully" });
+}
+export const verifyUser = async (req, res) => {
+  try {
+    const { localEmail, otp: this_otp } = req.body;
+    const totp = this_otp.toString();
+
+    // Await the user lookup
+    const userInDb = await User.findOne({ email: localEmail });
+
+    if (!userInDb) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    console.log("this is the otp in db:", userInDb.otp);
+    console.log("this is the otp entered by user:", totp);
+
+    if (userInDb.otp !== totp) {
+      return res.status(400).json({ message: "Invalid OTP" });
+    }
+
+    userInDb.isVerified = true;
+    await userInDb.save();
+
+    return res.status(200).json({ message: "User verified successfully" });
+
+  } catch (error) {
+    console.log("Error verifying user:", error);
+    res.status(500).json({ message: "Error verifying user", error: error.message });
+  }
+};
+
+
+export const deleteUser = async(req,res)=>{
+       try {
+           
+            // const qp = req.params.localEmail;
+            console.log("this is the body of email req to be deleted",req.body)
+            const email= req.body.localEmail;
+            console.log("this is the email to be deleted",email)
+
+            const deleteResponse = await User.deleteOne({email:email})
+            console.log("this si the deleteRes",deleteResponse)
+              
+            if(deleteResponse){
+              res.status(201).json({
+                 message:"User deleted successfull"
+              })
+            }
+
+        
+       } catch (error) {
+            console.log("this is the c balock in del user",error)
+            res.status(500).json({
+               message:"Internal server error"
+            })
+       }
 }

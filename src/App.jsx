@@ -15,8 +15,8 @@ import NewsManager from "./components/admin/adminPages/NewsManager.jsx"
 import Layout from "./components/UserPages/layout.jsx";
 import QuestionAnswers from "./components/QuestionAnswers.jsx"
 import AdminLayout from "./components/admin/layout.jsx";
-import toast,{Toaster} from 'react-hot-toast'
-
+import {Toaster} from 'react-hot-toast'
+import VerifyPage from "./components/verifyPage/page.jsx";
 
 const App = () => {
   return (
@@ -42,7 +42,7 @@ const App = () => {
           <Route path="/admin-page/*" element={<AdminLayout/>} />
           <Route path="/newsmanager" element={<NewsManager />} />
           <Route path="/dashboard/*" element={<Layout/>}/>
-          
+           <Route path="/verify-email" element={<VerifyPage/>}/>
           <Route path="/qna" element={<QuestionAnswers />} />
         </Routes>
       </BrowserRouter>

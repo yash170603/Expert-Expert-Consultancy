@@ -10,6 +10,7 @@ import { useSignUp } from "./context/SignUpContext"; // ✅ Ensure correct impor
 import toast, { Toaster } from "react-hot-toast"; 
 import { apiClient } from "../lib/axios.config";
 
+
 const ScrollSignup = () => {
   const [submitting, setSubmitting] = useState(false);
   const { formData } = useSignUp(); // ✅ Access the context data
@@ -49,36 +50,24 @@ const ScrollSignup = () => {
 
       if (response.status === 201) {
         toast.success("✅ Signed up successfully!");
+        localStorage.setItem("email", cleanedData?.personalDetails?.email);
+
         setTimeout(() => {
-          navigate("/sign-in");
+          navigate("/verify-email");  // before we were directly going to /sign_in
         }, 2000);
       } else {
         toast.error("⚠️ Unexpected response. Please try again later.");
       }
     } catch (error) {
-      if (error.response) {
-        // Server ne response diya, lekin error ke saath
-        if (error.response.status === 400) {
-          toast(
-           `Error: ${error.response?.data?.message || "Unknown error"}`
-          );
-        } else if (error.response.status === 500) {
-          //toast(` ❌ Internal server error, please try again later`);
-          toast(`Error: ${error.response.data?.error || "Unknown error"}`);
-        }
-      } else if (error.request) {
-        // Request gayi thi, par server ne koi response nahi diya
-        toast(" ❌ No response from server, check your internet connection.");
-      } else {
-        // Koi aur error (jaise ki syntax error, wrong API call)
-        toast(` ❌ Error: ${error.message}`);
-      }
-      console.error("Signup Error:", error);
+     
+      console.log("Signup  Error at scrollsignup:", error);
     } finally {
       setSubmitting(false);  
     }
   };
 
+  
+  
   const data = [
     { title: "Personal Details", content: <SignupForm /> },
     { title: "Neet Details", content: <NeetDetails /> },
@@ -125,3 +114,24 @@ const ScrollSignup = () => {
 };
 
 export default ScrollSignup;
+
+
+
+
+// if (error.response) {
+//   // Server ne response diya, lekin error ke saath
+//   if (error.response.status === 400) {
+//     toast(
+//      `Error: ${error.response?.data?.message || "Unknown error"}`
+//     );
+//   } else if (error.response.status === 500) {
+//     //toast(` ❌ Internal server error, please try again later`);
+//     toast(`Error: ${error.response.data?.error || "Unknown error"}`);
+//   }
+// } else if (error.request) {
+//   // Request gayi thi, par server ne koi response nahi diya
+//   toast(" ❌ No response from server, check your internet connection.");
+// } else {
+//   // Koi aur error (jaise ki syntax error, wrong API call)
+//   toast(` ❌ Error: ${error.message}`);
+// }

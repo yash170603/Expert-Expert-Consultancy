@@ -16,7 +16,7 @@
 
 // export default router;
 import express from "express";
-import { register,logIn, logOut } from "../controllers/authControllers.js";
+import { register,logIn, logOut ,verifyUser,deleteUser} from "../controllers/authControllers.js";
 
 
 const authrouter = express.Router();
@@ -25,5 +25,7 @@ const authrouter = express.Router();
 authrouter.post("/signup", register);
 authrouter.post("/login", logIn);
 authrouter.get("/logout",logOut);
+authrouter.post("/verify",verifyUser)
+authrouter.delete("/deleteUser",deleteUser)
 
 export default authrouter;
