@@ -11,7 +11,7 @@ export  const adminMiddleware = (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     console.log("Decoded token for admin :", decoded);
     req.AdminEmail = decoded.email; // Attach adminEmailID to request, but i dont think there is any use of this
-      if(decoded.userType !== "admin") {
+      if(decoded.userType !== 'admin') {
         return res.status(403).json({ message: "Forbidden - Not an admin" });
       }
     next();

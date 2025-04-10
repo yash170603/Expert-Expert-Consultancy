@@ -13,6 +13,15 @@ const adminRouter = express.Router();
 
 // auth routes for admin
 
+adminRouter.post("/check-admin", (req, res) => {
+  try {
+    res.status(200).json("this is the admin route health check");
+  } catch (error) {
+    console.log("This is the error at admin router", error);
+    res.status(500).json({ message: "There was an internal Server error for admin routes " });
+  }
+});
+
 // ✅ News Routes
 adminRouter.post("/news/add", addNews);
 adminRouter.get("/news/all", getAllNews);

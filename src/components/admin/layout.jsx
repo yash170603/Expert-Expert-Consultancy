@@ -1,45 +1,89 @@
- 
-
-import { useState } from "react"
-import { useLocation, Link, Routes, Route } from "react-router-dom"
-import { motion } from "framer-motion"
-import axios from "axios"
-import { Home, LogOut, X } from "lucide-react"
-import { NewspaperIcon, ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline"
-import { IoSchoolSharp, IoPeople } from "react-icons/io5"
-import AdminPage from "./adminPages/AdminPage"
-import NewsManager from "./adminPages/NewsManager"
-import StudentManager from "./adminPages/studentInfo"
-import TestimonialManager from "./adminPages/TestimonialManager"
-import CollegeManager from "./adminPages/collegeManager"
-import { Menu } from "lucide-react"
-
- 
+import { useEffect, useState } from "react";
+import { useLocation,useNavigate, Link, Routes, Route } from "react-router-dom";
+import { motion } from "framer-motion";
+import axios from "axios";
+import { Home, LogOut, X } from "lucide-react";
+import {
+  NewspaperIcon,
+  ChatBubbleBottomCenterTextIcon,
+} from "@heroicons/react/24/outline";
+import { IoSchoolSharp, IoPeople } from "react-icons/io5";
+import AdminPage from "./adminPages/AdminPage";
+import NewsManager from "./adminPages/NewsManager";
+import StudentManager from "./adminPages/studentInfo";
+import TestimonialManager from "./adminPages/TestimonialManager";
+import CollegeManager from "./adminPages/collegeManager";
+import { Menu } from "lucide-react";
+import toast from "react-hot-toast";
 
 const AdminLayout = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const location = useLocation()
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+    
+  const checkAdmin = async () => {
+         try {
+
+          const adminCheckResponse = await axios.post(
+            "http://localhost:3001/api/admin/check-admin",{},
+            { withCredentials: true }
+          );
+      
+          if (adminCheckResponse.status === 200) {
+            console.log("Admin is authenticated", adminCheckResponse);
+          }
+         } catch (error) {
+              console.log("This is the error at admin check", error);
+              if( error.response.status === 403 || error.response.status === 401){
+                console.log("THe signed in user is not admin");
+                toast.error("You are not authorized to access this page");
+                setTimeout(()=>{ navigate("/");},2000)
+              }
+         }
+  };
+
+  useEffect(()=>{
+    checkAdmin();
+  },[])
 
   const handleSignout = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/auth/signout")
-      console.log(response)
+      const response = await axios.get(
+        "http://localhost:3001/api/admin/auth/logout"
+      );
+      console.log(response);
     } catch (error) {
-      console.log("This is the error at signout", error)
+      console.log("This is the error at signout", error);
     }
-  }
+  };
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen)
-  }
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   const menuItems = [
     { path: "/admin-page", icon: <Home size={20} />, label: "Admin Dashboard" },
-    { path: "/admin-page/news", icon: <NewspaperIcon width={20} />, label: "News" },
-    { path: "/admin-page/students", icon: <IoPeople size={20} />, label: "Students" },
-    { path: "/admin-page/colleges", icon: <IoSchoolSharp size={20} />, label: "Colleges" },
-    { path: "/admin-page/testimonials", icon: <ChatBubbleBottomCenterTextIcon width={20} />, label: "Testimonials" },
-  ]
+    {
+      path: "/admin-page/news",
+      icon: <NewspaperIcon width={20} />,
+      label: "News",
+    },
+    {
+      path: "/admin-page/students",
+      icon: <IoPeople size={20} />,
+      label: "Students",
+    },
+    {
+      path: "/admin-page/colleges",
+      icon: <IoSchoolSharp size={20} />,
+      label: "Colleges",
+    },
+    {
+      path: "/admin-page/testimonials",
+      icon: <ChatBubbleBottomCenterTextIcon width={20} />,
+      label: "Testimonials",
+    },
+  ];
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-50 relative overflow-hidden">
@@ -56,7 +100,9 @@ const AdminLayout = () => {
         <div className="px-6 py-8 border-b border-blue-700/50">
           <h1 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-white">
             Expert Educational
-            <span className="block mt-1 text-sm font-normal text-blue-200">Consultancy</span>
+            <span className="block mt-1 text-sm font-normal text-blue-200">
+              Consultancy
+            </span>
           </h1>
         </div>
         <nav className="mt-8 px-4">
@@ -66,10 +112,12 @@ const AdminLayout = () => {
                 <Link
                   to={item.path}
                   className={`flex items-center gap-3 px-4 py-3 rounded-lg transition duration-200 ${
-                    location.pathname === item.path ? "bg-blue-700/50 text-white" : "text-blue-100 hover:bg-blue-700/30"
+                    location.pathname === item.path
+                      ? "bg-blue-700/50 text-white"
+                      : "text-blue-100 hover:bg-blue-700/30"
                   }`}
                   onClick={() => {
-                    setIsSidebarOpen(false)
+                    setIsSidebarOpen(false);
                   }}
                 >
                   {item.icon}
@@ -118,8 +166,7 @@ const AdminLayout = () => {
         </div>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default AdminLayout
-
+export default AdminLayout;

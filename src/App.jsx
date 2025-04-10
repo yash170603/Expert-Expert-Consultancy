@@ -10,7 +10,7 @@ import FAQ from "./components/FAQ.jsx";
 import ScrollSignup from "./components/scrollSignup.jsx";
 import { SignupProvider } from "./components/context/SignUpContext";
 import ServerFrontend from "./components/serverFrontend.jsx";
-import AdminLogin from "./components/admin/AdminLogin.jsx"
+import AdminLogin from "./components/AdminLogin.jsx"
 import NewsManager from "./components/admin/adminPages/NewsManager.jsx"
 import Layout from "./components/UserPages/layout.jsx";
 import QuestionAnswers from "./components/QuestionAnswers.jsx"

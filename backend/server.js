@@ -58,10 +58,13 @@ app.use("/api/auth", authRouter);
 app.use("/api/user", requireAuth, userRouter);
 
 
-//this will be the adminAuth routes
-app.use("/api/admin/auth", adminAuthRouter);
-// this is the admin protexted routes
-app.use("/api/admin", adminMiddleware, adminRouter);
+// //this will be the adminAuth routes
+// app.use("/api/admin/auth", adminAuthRouter);
+// // this is the admin protexted routes
+// app.use("/api/admin", adminMiddleware, adminRouter);
+app.use("/api/admin-auth/", adminAuthRouter);
+app.use("/api/admin/",adminMiddleware,adminRouter);
+
 
 
 

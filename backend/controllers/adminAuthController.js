@@ -1,5 +1,6 @@
 import Admin from "../models/admin.js"
-
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 
 export const logIn = async (req, res) => {
@@ -26,8 +27,9 @@ export const logIn = async (req, res) => {
 
               // create token and add it to cookie
               // this jwt.sign uses the jwt secret, and auth middleware uses the same secret to decode the incoming password, so that it can be verified
-              const token = jwt.sign({ id: checkingAdmin._id, }, process.env.JWT_SECRET, { expiresIn: "7d" });
+              const token = jwt.sign({ id: checkingAdmin._id,userType:"admin" }, process.env.JWT_SECRET, { expiresIn: "7d" });
               console.log("Token generated:", token);
+              
               res.cookie("token", token, { httpOnly: true, secure: true, sameSite: "strict", maxAge: 7 * 24 * 60 * 60 * 1000 });
               res.status(200).json({ message: "Admin Logged In successfully" });
 
