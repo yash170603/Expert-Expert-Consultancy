@@ -11,6 +11,8 @@ import authRouter from "./routes/authrouter.js"
 import { dbconnect } from "./db/dbconnect.js";
 import { userRouter } from "./routes/userRouter.js";
 import { requireAuth } from "./middlewares/authMiddleware.js";
+import { adminMiddleware } from "./middlewares/adminMiddleware.js";
+import adminAuthRouter from "./routes/adminAuthRouter.js";
 
 dotenv.config();
 const app = express();
@@ -50,9 +52,18 @@ app.use((req, res, next) => {
 });
 
 // ✅ API Routes
+// this the the userAuth routes
 app.use("/api/auth", authRouter);
-app.use("/api/admin", requireAuth, adminRouter);
+// this is the user protected routes
 app.use("/api/user", requireAuth, userRouter);
+
+
+//this will be the adminAuth routes
+app.use("/api/admin/auth", adminAuthRouter);
+// this is the admin protexted routes
+app.use("/api/admin", adminMiddleware, adminRouter);
+
+
 
 // ✅ 404 Route Handling
 app.use((req, res) => {

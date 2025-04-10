@@ -177,7 +177,7 @@
 // export default UserDashboardHome;
 import { motion } from "framer-motion";
 import neet from "../../../assets/neet.jpg";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -188,45 +188,74 @@ const UserDashboardHome = () => {
   const [thisForm, setThisForm] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const errorShown = useRef(false);
 
-  const fetchData = async () => {
-  //   try {
-  //     setFetching(true);
-  //     setError(null); // Reset error state on new fetch attempt
-  //     const formData = await axios.get("http://localhost:3001/api/user/getUser", { withCredentials: true });
-  //     console.log("this is form data",formData);
-  //     setThisForm(formData.data.data);
-  //   } catch (error) {
-  //     setError("There was an error fetching the data, please try again later.");
-  //     toast.error("There was an error fetching the data, please try again later.");
+//   const fetchData = async () => {
+//   //   try {
+//   //     setFetching(true);
+//   //     setError(null); // Reset error state on new fetch attempt
+//   //     const formData = await axios.get("http://localhost:3001/api/user/getUser", { withCredentials: true });
+//   //     console.log("this is form data",formData);
+//   //     setThisForm(formData.data.data);
+//   //   } catch (error) {
+//   //     setError("There was an error fetching the data, please try again later.");
+//   //     toast.error("There was an error fetching the data, please try again later.");
       
-  //   } finally {
-  //     setFetching(false);
-  //   }
-  // };
+//   //   } finally {
+//   //     setFetching(false);
+//   //   }
+//   // };
+//   try {
+//     setFetching(true);
+//     setError(null); // Reset error state on new fetch attempt
+//     const formData = await axios.get("http://localhost:3001/api/user/getUser", { withCredentials: true });
+//     setThisForm(formData.data.data);
+//     console.log("this is form data fetched at user dashboard",formData);
+//   } catch (error) {
+//     // Handle different error types
+//     if (error.response && error.response.status === 401) {
+//       // Unauthorized (401) error: Navigate to the Sign-In page
+//       setError("You are not authorized. Please log in.");
+//       toast.error("You are not authorized. Please log in.");
+//       navigate("/sign-in"); // Navigate to the Sign-In page
+//     } else {
+//       // General error: Display message
+//       setError("There was an error fetching the data, please try again later.");
+//       toast.error("There was an error fetching the data, please try again later.");
+//     }
+//   } finally {
+//     setFetching(false);
+//   }
+// };
+    
+const fetchData = async () => {
   try {
     setFetching(true);
-    setError(null); // Reset error state on new fetch attempt
+    setError(null);
+    errorShown.current = false; // Reset on fresh attempt
+
     const formData = await axios.get("http://localhost:3001/api/user/getUser", { withCredentials: true });
     setThisForm(formData.data.data);
-    console.log("this is form data fetched at user dashboard",formData);
+    console.log("this is form data fetched at user dashboard", formData);
   } catch (error) {
-    // Handle different error types
     if (error.response && error.response.status === 401) {
-      // Unauthorized (401) error: Navigate to the Sign-In page
+      if (!errorShown.current) {
+        toast.error("You are not authorized. Please log in.");
+        errorShown.current = true;
+      }
       setError("You are not authorized. Please log in.");
-      toast.error("You are not authorized. Please log in.");
-      navigate("/sign-in"); // Navigate to the Sign-In page
+      navigate("/sign-in");
     } else {
-      // General error: Display message
+      if (!errorShown.current) {
+        toast.error("There was an error fetching the data, please try again later.");
+        errorShown.current = true;
+      }
       setError("There was an error fetching the data, please try again later.");
-      toast.error("There was an error fetching the data, please try again later.");
     }
   } finally {
     setFetching(false);
   }
 };
-
   useEffect(() => {
     fetchData();
   }, []);

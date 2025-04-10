@@ -18,10 +18,10 @@ const UserSchema = new mongoose.Schema(
       ],
     },
 
-    otp:{
-       type:String,required:true,trim:true
+    otp: {
+      type: String, required: true, trim: true
     },
-    isVerified:{
+    isVerified: {
       type: Boolean,
       default: false,
     },

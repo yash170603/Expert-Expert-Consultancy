@@ -10,6 +10,9 @@ import { addNews, getAllNews, deleteNews, updateNews } from "../controllers/news
 
 const adminRouter = express.Router();
 
+
+// auth routes for admin
+
 // ✅ News Routes
 adminRouter.post("/news/add", addNews);
 adminRouter.get("/news/all", getAllNews);
