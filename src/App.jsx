@@ -9,6 +9,7 @@ import RefundRule from "./components/Footer/RefundRule.jsx";
 import FAQ from "./components/FAQ.jsx";
 import ScrollSignup from "./components/scrollSignup.jsx";
 import { SignupProvider } from "./components/context/SignUpContext";
+import { UserProvider } from "./components/context/sessionContext.jsx";
 import ServerFrontend from "./components/serverFrontend.jsx";
 import AdminLogin from "./components/AdminLogin.jsx"
 import NewsManager from "./components/admin/adminPages/NewsManager.jsx"
@@ -22,6 +23,7 @@ const App = () => {
   return (
     <div>
       <SignupProvider>
+      <UserProvider>
       <BrowserRouter>
       <Toaster/>
         <Routes>
@@ -44,6 +46,7 @@ const App = () => {
           <Route path="/qna" element={<QuestionAnswers />} />
         </Routes>
       </BrowserRouter>
+      </UserProvider>
       </SignupProvider>
     </div>
   );

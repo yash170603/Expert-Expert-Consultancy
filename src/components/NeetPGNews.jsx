@@ -5,27 +5,35 @@ import { Navigation, Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useUser } from "./context/sessionContext";
 
 export const NEETPGNews = () => {
   const [newsList, setNewsList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const { isLoggedIn } = useUser();
 
-  // ✅ Fetch News from Database
+  // Fetch News from Database
   useEffect(() => {
     const fetchNews = async () => {
+      if (!isLoggedIn) {
+        //No session, use dummy data
+        setNewsList(dummyNews);
+        setLoading(false);
+        return;
+      }
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/admin/news/all",{withCredentials:true}
+          "http://localhost:3001/api/user/getAllNews",{withCredentials:true}
         );
 
-        if (response.data && response.data.news) {
+        if (response.data) {
           // 🔹 Filter news related to "NEET PG"
           // const filteredNews = response.data.news.filter(
           //   (news) => news.category && news.category.toLowerCase() === "neet ug"
           // );
-
-          setNewsList(response.data.news);
+         console.log("this is the response",response.data.data)
+          setNewsList(response.data.data);
         } else {
           setError("Invalid API response format.");
         }
@@ -86,3 +94,27 @@ export const NEETPGNews = () => {
     </div>
   );
 };
+
+const dummyNews = [
+  {
+    _id: "dummy1",
+    caption: "Bangladesh Demands USD 4.32 Billion Compensation From Pakistan Along With 'Public Apology' For 1971 Atrocities",
+    image: "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1D7AKN.img?w=768&h=432&m=6&x=152&y=223&s=800&d=143",
+    link: "https://www.msn.com/en-in/news/world/bangladesh-demands-usd-4-32-billion-compensation-from-pakistan-along-with-public-apology-for-1971-atrocities/ar-AA1D7FfM?ocid=BingNewsSerp",
+
+  },
+  {
+    _id: "dummy2",
+    caption: "Did not attack Indian pharma warehouse': Russian embassy blames Ukraine",
+    image: "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1D7pxK.img?w=400&h=225&m=6",
+    link: "https://www.msn.com/en-in/news/world/did-not-attack-indian-pharma-warehouse-russian-embassy-blames-ukraine/ar-AA1D7rvq?ocid=BingNewsSerp",
+
+  },
+  {
+    _id: "dummy3",
+    caption: "FSU shooting live updates: Phoenix Ikner identified as shooter who killed 2 and injured 5",
+    image: "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1D7IxC.img?w=550&h=309&m=6",
+    link: "https://www.msn.com/en-in/news/world/fsu-shooting-live-updates-heavy-police-deployment-on-campus-security-alert-issued/ar-AA1D7QPl?ocid=BingNewsSerp",
+    
+  }
+];

@@ -13,37 +13,49 @@ import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react"; // Icons
+import { useUser } from "./context/sessionContext";
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const {isLoggedIn} = useUser();
 
-  // ✅ Fetch Testimonials from API
+  // Fetch Testimonials from API
   useEffect(() => {
     const fetchTestimonials = async () => {
+      if (!isLoggedIn) {
+        //No session, use dummy data
+        setTestimonials(dummyTestimonials);
+        setLoading(false);
+        return;
+      }
+
       try {
         const response = await axios.get(
-          "http://localhost:3001/api/admin/testimonials",{withCredentials:true}
+          "http://localhost:3001/api/user/getAllTestimonials",
+          { withCredentials: true }
         );
 
-        if (Array.isArray(response.data)) {
-          setTestimonials(response.data);
+        if (Array.isArray(response.data.data)) {
+          setTestimonials(response.data.data);
         } else {
-          console.error("⚠️ Unexpected API response format:", response.data);
+          console.error("Unexpected API response format:", response.data);
           setError("Invalid API response format.");
         }
-
         setLoading(false);
       } catch (err) {
-        console.error("❌ Error fetching testimonials:", err);
-        setError("Failed to load testimonials. Please try again later.");
+        console.error("Error fetching testimonials:", err);
+        setError("Failed to load testimonials.");
         setLoading(false);
       }
     };
 
     fetchTestimonials();
-  }, []);
+  }, [isLoggedIn]);
+
+ 
+
 
   return (
     <div className="py-12 relative bg-blue-950">
@@ -163,3 +175,26 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
+const dummyTestimonials = [
+  {
+    name: "Anonymous User",
+    image: "https://www.livemint.com/lm-img/img/2024/12/06/600x338/market_2_1733466021722_1733466033367.jpg",
+    text: "This platform is amazing! Even as a guest, I loved browsing through it.",
+    designation: "Guest User",
+    rating: 4,
+  },
+  {
+    name: "Jane Doe",
+    image: "https://responsive.fxempire.com/v7/_fxempire_/2025/04/Wall-st-NYSE-3.jpg?func=crop&q=70&width=660&force_format=webp",
+    text: "Great user experience and beautifully designed interface.",
+    designation: "Freelancer",
+    rating: 5,
+  },
+  {
+    name: "Jane Doe",
+    image: "https://responsive.fxempire.com/v7/_fxempire_/2025/04/US100_2025-04-17_21-45-15.png?func=crop&q=70",
+    text: "yes sir this was good.",
+    designation: "Financial markets",
+    rating: 5,
+  },
+];

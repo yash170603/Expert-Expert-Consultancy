@@ -19,11 +19,11 @@ const app = express();
 const port = process.env.PORT || 3001;
 const frontendPort = process.env.FRONTEND_PORT || 5173; // Fixed naming
 
-// ✅ Fix __dirname for ES module
+ 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ✅ CORS Middleware
+ 
 app.use(cors({
   origin: `http://localhost:${frontendPort}`,
   credentials: true,
@@ -38,20 +38,20 @@ app.options("*", (req, res) => {
   res.sendStatus(200);
 });
 
-// ✅ Middleware setup
+ 
 app.use(express.json());
 app.use(cookieParser());
-// ✅ Static file serving
+ 
 const testimonialPath = path.join(__dirname, "assets/testimonial");
 app.use("/assets/testimonial", express.static(testimonialPath));
 
-// ✅ Logging middleware (before routes)
+ 
 app.use((req, res, next) => {
-  console.log(`🌐 ${req.method} ${req.originalUrl}`);
+  console.log(` ${req.method} ${req.originalUrl}`);
   next();
 });
 
-// ✅ API Routes
+ 
 // this the the userAuth routes
 app.use("/api/auth", authRouter);
 // this is the user protected routes
@@ -59,27 +59,25 @@ app.use("/api/user", requireAuth, userRouter);
 
 
 // //this will be the adminAuth routes
-// app.use("/api/admin/auth", adminAuthRouter);
-// // this is the admin protexted routes
-// app.use("/api/admin", adminMiddleware, adminRouter);
 app.use("/api/admin-auth/", adminAuthRouter);
+// // this is the admin protexted routes
 app.use("/api/admin/",adminMiddleware,adminRouter);
 
 
 
 
-// ✅ 404 Route Handling
+ 
 app.use((req, res) => {
-  res.status(404).json({ error: "❌ Route Not Found" });
+  res.status(404).json({ error: " Route Not Found" });
 });
 
-// ✅ Global Error Handler
+ 
 app.use((err, req, res, next) => {
   console.error("🔥 Server Error:", err);
   res.status(500).json({ error: "Internal Server Error" });
 });
 
-// ✅ Connect DB & Start Server
+ 
 dbconnect()
   .then(() => {
     console.log("✅ Database Connected Successfully");

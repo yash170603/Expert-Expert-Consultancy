@@ -1,5 +1,6 @@
 import User from "../models/user.js"
-
+import News from "../models/news.js";
+import Testimonials from "../models/testimonial.js";
 
 
 
@@ -64,25 +65,36 @@ export const updateUser= async (req,res) =>{
    }
 }
 
-export const getAllStudents = async (req,res)=>{
-        try {
-               const students = await User.find();
-                if(students.length === 0){
-                  return res.status(404).json({message:"No students found"})
-                }
+export const getAllNews = async (req,res)=>{
+      try {
+            const news = await News.find();
+            if(!news){
+              return res.status(404).json({message:"No news found"})
+            }
+            res.status(200).json({
+              message:"All news fetched successfully",
+              data:news
+            })
+        
+      } catch (error) {
+           console.log("this is the error at getting all news",error)
+           res.status(500).json({message:"Internal server error"})
+      }
+}
 
-                const studentsWithoutPassword = students.map((student) => {
-                  const studentObject = student.toObject();
-                  delete studentObject.password;
-                  return studentObject;
-                });
-                res.status(200).json({
-                  message:"Students fetched successfully",
-                  data:studentsWithoutPassword
-                })
-
-        } catch (error) {
-          console.log("this is error at fetching all students",error)
-          res.status(500).json({message:"Internal server error"})
-        }
+export const getAllTestimonials = async (req,res)=>{
+      try {
+            const testimonials = await Testimonials.find();
+            if(!testimonials){
+              return res.status(404).json({message:"No testimonials found"})
+            }
+            res.status(200).json({
+              message:"All testimonials fetched successfully",
+              data:testimonials
+            })
+        
+      } catch (error) {
+           console.log("this is the error at getting all testimonials",error)
+           res.status(500).json({message:"Internal server error"})
+      }
 }
