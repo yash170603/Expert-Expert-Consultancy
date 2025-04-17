@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import backgroundImage from "../assets/signInbackgroundimage.webp";
 import axios from "axios";
-import { apiClient } from "../lib/axios.config";
 import { useNavigate } from "react-router-dom";
 const SignInPage = () => {
 

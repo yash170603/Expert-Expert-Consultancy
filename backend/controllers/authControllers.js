@@ -125,7 +125,11 @@ export const logIn = async (req, res) => {
 
 // Logout user
 export const logOut = async (req, res) => {
-  res.clearCookie("token");
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+  });
   res.status(200).json({ message: "User Logged Out successfully" });
 }
 export const verifyUser = async (req, res) => {
@@ -158,29 +162,20 @@ export const verifyUser = async (req, res) => {
   }
 };
 
+export const deleteUser = async (req, res) => {
+  try {
+    const { email } = req.body;
+    console.log("Deleting user with email:", email);
 
-export const deleteUser = async(req,res)=>{
-       try {
-           
-            // const qp = req.params.localEmail;
-            console.log("this is the body of email req to be deleted",req.body)
-            const email= req.body.localEmail;
-            console.log("this is the email to be deleted",email)
+    const deleteResponse = await User.deleteOne({ email });
 
-            const deleteResponse = await User.deleteOne({email:email})
-            console.log("this si the deleteRes",deleteResponse)
-              
-            if(deleteResponse){
-              res.status(201).json({
-                 message:"User deleted successfull"
-              })
-            }
-
-        
-       } catch (error) {
-            console.log("this is the c balock in del user",error)
-            res.status(500).json({
-               message:"Internal server error"
-            })
-       }
-}
+    if (deleteResponse.deletedCount > 0) {
+      return res.status(200).json({ message: "User deleted successfully" });
+    } else {
+      return res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};

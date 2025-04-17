@@ -44,7 +44,11 @@ export const logIn = async (req, res) => {
 
 export const logOut = async (req, res) => {
        try {
-              res.clearCookie("token");
+              res.clearCookie("token", {
+                     httpOnly: true,
+                     secure: true,
+                     sameSite: "strict",
+                   });
               res.status(200).json({ message: "Admin Logged Out successfully" });
        } catch (error) {
               console.error("Error logging out:", error);

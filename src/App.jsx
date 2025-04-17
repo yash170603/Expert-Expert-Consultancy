@@ -29,8 +29,6 @@ const App = () => {
           <Route path="/" element={<NeetPG />} />   {/* Home page */}
           <Route path="/sign-in" element={<SignInPage />} /> 
           <Route path="/neet-ug" element={<NeetUG />} />
-
-          
           <Route path="/terms-and-conditions" element={<TermsAndCondition />} />
           <Route path="/refund-rule" element={<RefundRule />} />
           <Route path="/faq" element={<FAQ />} />

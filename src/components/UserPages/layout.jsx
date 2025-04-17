@@ -152,11 +152,18 @@ const Layout = () => {
 
   const handleSignout = async () => {
     try {
-     // const response = await axios.get("http://localhost:5000/api/auth/signout")
-     const respones= "heel"
-      console.log(response)
+      const logOutresponse = await axios.get("http://localhost:3001/api/auth/logout", {
+        withCredentials: true,  
+      })
+      console.log("logout response at user",logOutresponse )
+      
+            setTimeout(() => {
+              toast.success("Successfully signed out");
+              navigate("/");
+            }, 2000);
     } catch (error) {
-      console.log("This is the error at signout", error)
+      console.error("Signout failed:", error?.response?.data || error.message);
+      alert("Error signing out. Please try again.");
     }
   }
 

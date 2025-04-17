@@ -55,12 +55,10 @@ const VerifyPage = () => {
         localEmail
       );
       try {
-        const deleteResponse = await axios.delete(
-          "http://localhost:3001/api/auth/deleteUser",
-          {
-            localEmail,
-          }
-        );
+        const deleteResponse = await axios.delete("http://localhost:3001/api/auth/deleteUser", {
+          data: { email: localEmail },
+          withCredentials: true,
+        });
         if (deleteResponse.status === 200) {
           toast.error(
             "User deleted due to failed verification. Please try again."
